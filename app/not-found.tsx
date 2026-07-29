@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-navy px-6 text-center">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-navy px-6 text-center">
       <span className="inline-flex items-center justify-center rounded-[10px] bg-neutral p-[14px]">
         <Image
           src="/logos/logo-mark.png"
@@ -34,6 +34,6 @@ export default function NotFound() {
       <Button href="/" tone="dark" className="mt-8">
         {notFound.buttonLabel}
       </Button>
-    </div>
+    </main>
   );
 }

@@ -46,3 +46,14 @@ body {
 a {
   transition: color 150ms ease;
 }
+
+/*
+  Accessibility §18: the source design has no styled :focus-visible state
+  anywhere (relies on browser defaults). Add one explicit, visible ring that
+  reads on both light and dark section backgrounds.
+*/
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-emerald);
+  outline-offset: 2px;
+}
