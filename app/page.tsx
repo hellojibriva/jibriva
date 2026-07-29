@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -15,10 +16,39 @@ import { InsightsTeaser } from "@/components/sections/InsightsTeaser";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { hero } from "@/content/home";
 import { homeApproachSteps } from "@/content/timeline";
+import { buildMetadata } from "@/lib/metadata";
+import { organizationGraph } from "@/lib/schema";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Jibriva | One Health Consulting, Research & Digital Solutions",
+  description:
+    "Jibriva is a Nigerian One Health consultancy helping NGOs, governments, researchers and development partners strengthen programmes through research, monitoring & evaluation, digital systems and capacity strengthening.",
+  path: "/",
+  ogDescription:
+    "Helping NGOs, governments, researchers and development partners strengthen programmes across the One Health ecosystem.",
+  keywords: [
+    "One Health Nigeria",
+    "Monitoring and Evaluation",
+    "Research Consultancy",
+    "NGO Consultant",
+    "Digital Health",
+    "Public Health",
+    "Programme Evaluation",
+    "Dashboard Development",
+    "Research Support",
+    "Data Visualization",
+    "Health Information Systems",
+    "Development Consulting",
+  ],
+});
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationGraph()) }}
+      />
       <Navbar activePath="/" />
       <main>
         <Hero

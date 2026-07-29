@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { notFound } from "@/content/not-found";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Jibriva",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

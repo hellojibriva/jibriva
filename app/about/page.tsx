@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -14,10 +15,25 @@ import {
   aboutApproachIntro,
 } from "@/content/about";
 import { aboutApproachSteps } from "@/content/timeline";
+import { buildMetadata } from "@/lib/metadata";
+import { founderPersonSchema } from "@/lib/schema";
+
+export const metadata: Metadata = buildMetadata({
+  title: "About Jibriva — A Nigerian One Health Consultancy",
+  description:
+    "Jibriva was created to help organisations respond to health and development challenges that cross the boundaries between people, animals and the environment.",
+  path: "/about",
+  ogTitle: "About Jibriva",
+  ogDescription: "Why Jibriva exists, and how we work with our partners.",
+});
 
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(founderPersonSchema()) }}
+      />
       <Navbar activePath="/about" />
       <main>
         <Hero eyebrow={aboutHero.eyebrow} h1={aboutHero.h1} />

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -6,6 +7,16 @@ import { Section } from "@/components/ui/Section";
 import { GridSeamPanel } from "@/components/ui/GridSeamPanel";
 import { Pill } from "@/components/ui/Pill";
 import { sectors, tools, toolsIntro } from "@/content/expertise";
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Expertise — Sectors, Platforms & Tools | Jibriva",
+  description:
+    "Jibriva works across Public Health, One Health, Animal Health, Research, Agriculture, Climate & Environment and more, using the platforms programme teams already trust.",
+  path: "/expertise",
+  ogTitle: "Expertise — Jibriva",
+  ogDescription: "The sectors we support and the platforms we use to support them.",
+});
 
 export default function ExpertisePage() {
   return (

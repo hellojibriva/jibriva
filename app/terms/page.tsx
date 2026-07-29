@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { termsOfService } from "@/content/legal";
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Terms of Service | Jibriva",
+  description: "Terms of service governing the use of the Jibriva website.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

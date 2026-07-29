@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -7,6 +8,18 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { contactHero } from "@/content/contact";
 import { siteConfig } from "@/config/site";
+import { buildMetadata } from "@/lib/metadata";
+
+// SEO_GUIDE.md flags the OG description as a stale v1 CTA line and
+// suggests refreshing it to match the current CTA copy — done here.
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Jibriva",
+  description:
+    "Get in touch with Jibriva. Email hello.jibriva@gmail.com or message us on WhatsApp to discuss your programme.",
+  path: "/contact",
+  ogTitle: "Contact Jibriva",
+  ogDescription: "Better evidence. Better decisions. Better health outcomes.",
+});
 
 export default function ContactPage() {
   return (

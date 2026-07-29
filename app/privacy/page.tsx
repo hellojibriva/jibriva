@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { privacyPolicy } from "@/content/legal";
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy | Jibriva",
+  description:
+    "Jibriva's privacy policy — how we collect, use and protect information submitted through our website.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

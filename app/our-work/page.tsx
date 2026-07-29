@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -5,6 +6,18 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { Section } from "@/components/ui/Section";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { projects } from "@/content/our-work";
+import { buildMetadata } from "@/lib/metadata";
+
+// SEO_GUIDE.md flags the source's <title> as a stale "Projects — Jibriva"
+// left over from before the "Our Work" nav rename (CHANGELOG.md Known
+// Follow-Ups) and recommends updating it during the rebuild — done here.
+export const metadata: Metadata = buildMetadata({
+  title: "Our Work — Case Studies | Jibriva",
+  description:
+    "A preview of the platforms and systems Jibriva builds with its partners. Full case studies are in preparation.",
+  path: "/our-work",
+  ogTitle: "Our Work — Jibriva",
+});
 
 export default function OurWorkPage() {
   return (

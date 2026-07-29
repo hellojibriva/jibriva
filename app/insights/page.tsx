@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Section } from "@/components/ui/Section";
 import { InsightCard } from "@/components/cards/InsightCard";
 import { insights } from "@/content/insights";
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Insights — Jibriva",
+  description: "One Health, monitoring & evaluation and research perspectives from the Jibriva team.",
+  path: "/insights",
+  ogTitle: "Insights — Jibriva",
+});
 
 export default function InsightsPage() {
   return (
