@@ -50,12 +50,6 @@ export interface JourneyMilestone {
   desc: string;
 }
 
-export interface ThoughtLeadershipItem {
-  type: string;
-  title: string;
-  status: string;
-}
-
 export interface NavItem {
   label: string;
   href: string;
@@ -64,14 +58,6 @@ export interface NavItem {
 export interface FooterLink {
   label: string;
   href: string | null;
-}
-
-export interface Sector {
-  name: string;
-}
-
-export interface Tool {
-  name: string;
 }
 
 export interface ResourceItem {

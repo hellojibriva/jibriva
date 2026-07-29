@@ -19,9 +19,12 @@ export function OurApproach({ eyebrow, h2, intro, steps, variant }: OurApproachP
           {h2}
         </h2>
 
-        {/* Fixed 6-column grid — deliberately does not reflow on mobile. Flagged
-            limitation per DESIGN_SYSTEM.md §4.5, not silently "fixed" without sign-off. */}
-        <div className="mt-12 grid grid-cols-6 gap-6 max-md:grid-cols-2 max-md:gap-x-4 max-md:gap-y-10">
+        {/* Fixed 6-column grid, matching DESIGN_SYSTEM.md §4.5 exactly: "the one
+            layout in the system that does not use auto-fit/clamp and will not
+            reflow on mobile." A mobile override is explicitly flagged there as
+            NOT part of the approved design and needs client sign-off first —
+            do not add one here without that sign-off. */}
+        <div className="mt-12 grid grid-cols-6 gap-4 sm:gap-6">
           {steps.map((step) => (
             <div key={step.name} className="relative pt-6">
               <span className="absolute left-0 top-0 h-2.5 w-2.5 rounded-full bg-emerald" />
