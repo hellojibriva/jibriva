@@ -7,15 +7,14 @@ export function FounderSection() {
   return (
     <Section background="neutral" contentClassName="max-w-[1000px]">
       <div className="grid grid-cols-[minmax(200px,240px)_1fr] gap-10 max-sm:grid-cols-1">
-        {/* Portrait placeholder — reserved 4/5 aspect ratio so a real photo can
-            drop in later via next/image with zero layout shift. */}
-        <div className="aspect-[4/5] w-full max-w-[240px] rounded-[4px] border border-border bg-white flex items-center justify-center">
+        <div className="relative aspect-[4/5] w-full max-w-[240px] overflow-hidden rounded-[4px] border border-border bg-white">
           <Image
-            src="/logos/logo-mark.png"
+            src="/team/abi-precious-jibrin.png"
             alt="Abi Precious Jibrin, Founder & Principal Consultant, Jibriva"
-            width={48}
-            height={48}
-            className="h-12 w-12 opacity-40"
+            fill
+            sizes="240px"
+            className="object-cover"
+            priority
           />
         </div>
 
