@@ -12,7 +12,7 @@ export function ProjectCard({ project, variant = "full" }: ProjectCardProps) {
   if (variant === "lightweight") {
     return (
       <Card>
-        <p className="text-[13px] font-bold uppercase tracking-[0.06em] text-emerald">
+        <p className="text-[13px] font-bold uppercase tracking-[0.06em] text-emerald-text">
           {project.tag}
         </p>
         <h3 className="mt-3 text-[17px] font-bold text-navy">{project.name}</h3>
@@ -24,7 +24,7 @@ export function ProjectCard({ project, variant = "full" }: ProjectCardProps) {
   return (
     <Card>
       <div className="flex items-center justify-between gap-3">
-        <p className="text-[13px] font-bold uppercase tracking-[0.06em] text-emerald">
+        <p className="text-[13px] font-bold uppercase tracking-[0.06em] text-emerald-text">
           {project.tag}
         </p>
         <Badge label={project.status} tone={statusToTone(project.status)} />
@@ -49,7 +49,7 @@ export function ProjectCard({ project, variant = "full" }: ProjectCardProps) {
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 inline-block text-[14px] font-semibold text-emerald hover:text-navy"
+          className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
         >
           Explore Platform →
         </a>

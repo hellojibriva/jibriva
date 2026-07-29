@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { LogoMark } from "@/components/ui/LogoMark";
 
 interface FooterProps {
   variant?: "full" | "minimal";
@@ -19,7 +19,7 @@ export function Footer({ variant = "full" }: FooterProps) {
   if (variant === "minimal") {
     return (
       <footer className="border-t border-white/10 bg-navy px-[clamp(24px,5vw,64px)] py-8">
-        <p className="text-center text-[13px] text-white/40">
+        <p className="text-center text-[13px] text-white/50">
           Copyright &copy; 2026 Jibriva.
         </p>
       </footer>
@@ -32,13 +32,7 @@ export function Footer({ variant = "full" }: FooterProps) {
         <div>
           <Link href="/" className="mb-4 flex items-center gap-2">
             <span className="inline-flex items-center justify-center rounded-[6px] bg-neutral p-[6px]">
-              <Image
-                src="/logos/logo-mark.png"
-                alt="Jibriva"
-                width={22}
-                height={22}
-                className="h-[22px] w-[22px]"
-              />
+              <LogoMark size={22} />
             </span>
             <span className="text-base font-bold text-white">Jibriva</span>
           </Link>
@@ -91,7 +85,7 @@ export function Footer({ variant = "full" }: FooterProps) {
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-[13.5px] text-white/35">{item.label}</span>
+                  <span className="text-[13.5px] text-white/50">{item.label}</span>
                 )}
               </li>
             ))}
@@ -126,8 +120,8 @@ export function Footer({ variant = "full" }: FooterProps) {
       </div>
 
       <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6">
-        <p className="text-[13px] text-white/40">Copyright &copy; 2026 Jibriva.</p>
-        <p className="text-[13px] text-white/40">
+        <p className="text-[13px] text-white/50">Copyright &copy; 2026 Jibriva.</p>
+        <p className="text-[13px] text-white/50">
           {siteConfig.footer.legal.map((item, i) => (
             <span key={item.href}>
               {i > 0 && " · "}

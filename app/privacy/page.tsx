@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <h1 className="text-[clamp(32px,4vw,44px)] font-extrabold tracking-[-0.02em] text-navy">
             {privacyPolicy.title}
           </h1>
-          <p className="mt-3 text-[14px] text-text-faint">Last updated: {privacyPolicy.lastUpdated}</p>
+          <p className="mt-3 text-[14px] text-text-muted">Last updated: {privacyPolicy.lastUpdated}</p>
           <p className="mt-8 text-[16px] leading-relaxed text-text-muted">{privacyPolicy.intro}</p>
 
           {privacyPolicy.sections.map((section) => (

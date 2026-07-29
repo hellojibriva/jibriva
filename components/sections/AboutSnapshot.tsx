@@ -19,7 +19,7 @@ export function AboutSnapshot() {
           </p>
           <Link
             href="/about"
-            className="mt-5 inline-block text-[14px] font-semibold text-emerald hover:text-navy"
+            className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
           >
             {aboutSnapshot.linkLabel}
           </Link>

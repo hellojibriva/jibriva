@@ -14,7 +14,7 @@ export function OurApproach({ eyebrow, h2, intro, steps, variant }: OurApproachP
   if (variant === "home") {
     return (
       <Section background="dark">
-        <Eyebrow className="text-emerald">{eyebrow}</Eyebrow>
+        <Eyebrow tone="dark">{eyebrow}</Eyebrow>
         <h2 className="mt-3 max-w-[720px] text-[clamp(28px,3.5vw,38px)] font-bold text-white">
           {h2}
         </h2>

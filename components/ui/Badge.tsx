@@ -9,7 +9,7 @@ interface BadgeProps {
 }
 
 const toneStyles: Record<BadgeTone, string> = {
-  flagship: "bg-emerald/10 text-emerald",
+  flagship: "bg-emerald/10 text-emerald-text",
   live: "bg-status-live-bg text-navy",
   "in-development": "bg-status-neutral-bg text-navy",
   "coming-soon": "bg-status-neutral-bg text-status-neutral-text",

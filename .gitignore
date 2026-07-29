@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lighthouse reports (local QA artifacts, not part of the deliverable)
+lighthouse*.json

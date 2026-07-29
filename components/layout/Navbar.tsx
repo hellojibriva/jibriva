@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { NavLink } from "@/components/navigation/NavLink";
 import { Button } from "@/components/ui/Button";
+import { LogoMark } from "@/components/ui/LogoMark";
 
 interface NavbarProps {
   activePath: string;
@@ -14,14 +14,7 @@ export function Navbar({ activePath, showCta = true }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-border bg-white/92 px-[clamp(24px,5vw,64px)] py-4 backdrop-blur-[8px]">
       <Link href="/" className="flex items-center gap-2 shrink-0">
-        <Image
-          src="/logos/logo-mark.png"
-          alt="Jibriva"
-          width={28}
-          height={28}
-          className="h-7 w-7"
-          priority
-        />
+        <LogoMark size={28} priority />
         <span className="text-lg font-bold text-navy">Jibriva</span>
       </Link>
 

@@ -59,7 +59,7 @@ export default function AboutPage() {
             {[missionVisionValues.mission, missionVisionValues.vision, missionVisionValues.values].map(
               (block) => (
                 <div key={block.label}>
-                  <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-emerald">
+                  <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-emerald-text">
                     {block.label}
                   </h3>
                   <p className="mt-3 text-[15.5px] leading-relaxed text-text-muted">

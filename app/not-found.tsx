@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { LogoMark } from "@/components/ui/LogoMark";
 import { notFound } from "@/content/not-found";
 
 export const metadata: Metadata = {
@@ -12,13 +12,7 @@ export default function NotFound() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-navy px-6 text-center">
       <span className="inline-flex items-center justify-center rounded-[10px] bg-neutral p-[14px]">
-        <Image
-          src="/logos/logo-mark.png"
-          alt="Jibriva"
-          width={40}
-          height={40}
-          className="h-10 w-10"
-        />
+        <LogoMark size={40} priority />
       </span>
 
       <p className="mt-8 text-[13px] font-semibold uppercase tracking-[0.1em] text-emerald">

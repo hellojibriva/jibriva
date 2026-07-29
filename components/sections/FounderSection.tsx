@@ -20,7 +20,7 @@ export function FounderSection() {
 
         <div>
           <h2 className="text-[clamp(26px,3.2vw,34px)] font-bold text-navy">{founder.name}</h2>
-          <p className="mt-1 text-[15px] font-semibold text-emerald">{founder.title}</p>
+          <p className="mt-1 text-[15px] font-semibold text-emerald-text">{founder.title}</p>
 
           <div className="mt-6 space-y-4">
             <h3 className="text-[15px] font-bold uppercase tracking-[0.06em] text-navy">
@@ -57,7 +57,7 @@ export function FounderSection() {
           <ul className="space-y-6">
             {founder.professionalJourney.map((milestone) => (
               <li key={milestone.period} className="border-l-2 border-border pl-5">
-                <p className="text-[12px] font-bold uppercase tracking-[0.06em] text-text-faint">
+                <p className="text-[12px] font-bold uppercase tracking-[0.06em] text-text-muted">
                   {milestone.period}
                 </p>
                 <p className="mt-1 text-[15px] font-bold text-navy">{milestone.title}</p>

@@ -19,7 +19,7 @@ export function SectionHeaderRow({ eyebrow, h2, linkLabel, linkHref, dark = fals
   return (
     <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-[280px] flex-1">
-        <Eyebrow>{eyebrow}</Eyebrow>
+        <Eyebrow tone={dark ? "dark" : "light"}>{eyebrow}</Eyebrow>
         <h2
           className={`mt-3 text-[clamp(28px,3.5vw,38px)] font-bold ${dark ? "text-white" : "text-navy"}`}
         >
@@ -29,7 +29,7 @@ export function SectionHeaderRow({ eyebrow, h2, linkLabel, linkHref, dark = fals
       <Link
         href={linkHref}
         className={`shrink-0 whitespace-nowrap text-[14px] font-semibold ${
-          dark ? "text-emerald hover:text-white" : "text-emerald hover:text-navy"
+          dark ? "text-emerald hover:text-white" : "text-emerald-text hover:text-navy"
         }`}
       >
         {linkLabel}

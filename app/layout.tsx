@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: "Jibriva | One Health Consulting, Research & Digital Solutions",
   description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: "/icons/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/icons/favicon.png",
+  },
 };
 
 export default function RootLayout({
