@@ -33,7 +33,13 @@ export function FeaturedProject() {
           className="flex aspect-[16/10] items-center justify-center border border-border bg-[repeating-linear-gradient(135deg,theme(colors.neutral),theme(colors.neutral)_10px,white_10px,white_20px)]"
         >
           <div className="flex flex-col items-center gap-3 bg-white/90 px-6 py-5">
-            <Image src="/logos/logo-mark.png" alt="Jibriva" width={32} height={32} />
+            <Image
+              src="/logos/logo-mark.png"
+              alt="Jibriva"
+              width={32}
+              height={32}
+              className="h-8 w-8"
+            />
             <p className="font-mono text-[12px] text-text-faint">
               {featuredProject.placeholderCaption}
             </p>

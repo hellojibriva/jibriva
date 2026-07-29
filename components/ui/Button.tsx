@@ -6,8 +6,7 @@ type ButtonVariant = "primary" | "secondary";
 type ButtonTone = "light" | "dark";
 type ButtonSize = "sm" | "md";
 
-interface ButtonProps {
-  href: string;
+interface BaseProps {
   children: ReactNode;
   variant?: ButtonVariant;
   tone?: ButtonTone;
@@ -15,8 +14,17 @@ interface ButtonProps {
   className?: string;
 }
 
+type ButtonProps =
+  | (BaseProps & { href: string; type?: never; disabled?: never; onClick?: never })
+  | (BaseProps & {
+      href?: never;
+      type: "submit" | "button";
+      disabled?: boolean;
+      onClick?: () => void;
+    });
+
 const base =
-  "inline-flex items-center justify-center whitespace-nowrap rounded-[2px] font-semibold transition-colors duration-150 ease-out";
+  "inline-flex items-center justify-center whitespace-nowrap rounded-[2px] font-semibold transition-colors duration-150 ease-out disabled:opacity-60 disabled:cursor-not-allowed";
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: "px-[18px] py-[10px] text-[13.5px]",
@@ -36,33 +44,31 @@ const variantStyles: Record<ButtonTone, Record<ButtonVariant, string>> = {
   },
 };
 
-export function Button({
-  href,
-  children,
-  variant = "primary",
-  tone = "light",
-  size = "md",
-  className,
-}: ButtonProps) {
-  const isExternal = /^https?:\/\//.test(href);
+export function Button(props: ButtonProps) {
+  const { children, variant = "primary", tone = "light", size = "md", className } = props;
 
-  const classes = cn(
-    base,
-    sizeStyles[size],
-    variantStyles[tone][variant],
-    className,
-  );
+  const classes = cn(base, sizeStyles[size], variantStyles[tone][variant], className);
+
+  if (props.type) {
+    return (
+      <button type={props.type} disabled={props.disabled} onClick={props.onClick} className={classes}>
+        {children}
+      </button>
+    );
+  }
+
+  const isExternal = /^https?:\/\//.test(props.href);
 
   if (isExternal) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+      <a href={props.href} target="_blank" rel="noopener noreferrer" className={classes}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={props.href} className={classes}>
       {children}
     </Link>
   );

@@ -32,7 +32,13 @@ export function Footer({ variant = "full" }: FooterProps) {
         <div>
           <Link href="/" className="mb-4 flex items-center gap-2">
             <span className="inline-flex items-center justify-center rounded-[6px] bg-neutral p-[6px]">
-              <Image src="/logos/logo-mark.png" alt="Jibriva" width={22} height={22} />
+              <Image
+                src="/logos/logo-mark.png"
+                alt="Jibriva"
+                width={22}
+                height={22}
+                className="h-[22px] w-[22px]"
+              />
             </span>
             <span className="text-base font-bold text-white">Jibriva</span>
           </Link>
