@@ -2,6 +2,18 @@ import type { Project } from "@/types/content";
 
 export const projects: Project[] = [
   {
+    slug: "brucellosis-surveillance-nigeria",
+    tag: "Surveillance & GIS",
+    name: "Nigeria Brucellosis Surveillance & GIS Analysis",
+    status: "Live",
+    overview:
+      "A WAHIS-sourced surveillance analysis auditing data quality and mapping reported brucellosis outbreaks across Nigeria, 2008–2023.",
+    problem:
+      "Raw surveillance extracts are often used for dashboards before anyone checks what the data actually contain.",
+    tech: ["WAHIS", "GIS", "Data Quality", "M&E"],
+    href: "/our-work/brucellosis-surveillance-nigeria",
+  },
+  {
     slug: "one-health-hub",
     tag: "One Health",
     name: "One Health Hub",

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Project } from "@/types/content";
 import { Badge, statusToTone } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
@@ -44,16 +45,24 @@ export function ProjectCard({ project, variant = "full" }: ProjectCardProps) {
         ))}
       </div>
 
-      {project.href && (
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
-        >
-          Explore Platform →
-        </a>
-      )}
+      {project.href &&
+        (project.href.startsWith("/") ? (
+          <Link
+            href={project.href}
+            className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
+          >
+            Read Case Study →
+          </Link>
+        ) : (
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
+          >
+            Explore Platform →
+          </a>
+        ))}
     </Card>
   );
 }

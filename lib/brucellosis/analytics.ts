@@ -1,0 +1,211 @@
+import { wahisRecords, WAHIS_METADATA, type BrucellaSubtype } from "@/data/brucellosis/wahis-records";
+import { ZONE_STATES, getZoneForState, type GeopoliticalZone } from "@/data/brucellosis/zones";
+
+const TOTAL_NIGERIA_STATES = 37; // 36 states + FCT
+
+export interface SummaryMetrics {
+  totalOutbreaks: number;
+  recordCount: number;
+  statesReporting: number;
+  totalStates: number;
+  yearsWithReports: number;
+  periodStart: number;
+  periodEnd: number;
+  subtypeCount: number;
+  periodsReported: number;
+  periodsPossible: number;
+}
+
+export function getSummaryMetrics(): SummaryMetrics {
+  const years = new Set(wahisRecords.map((r) => r.year));
+  const states = new Set(wahisRecords.map((r) => r.state));
+  const subtypes = new Set(wahisRecords.map((r) => r.subtype));
+  const periods = new Set(wahisRecords.map((r) => `${r.year}-${r.semester}`));
+  const periodStart = Math.min(...years);
+  const periodEnd = Math.max(...years);
+  const periodsPossible = (periodEnd - periodStart + 1) * 2;
+
+  return {
+    totalOutbreaks: wahisRecords.reduce((sum, r) => sum + r.newOutbreaks, 0),
+    recordCount: wahisRecords.length,
+    statesReporting: states.size,
+    totalStates: TOTAL_NIGERIA_STATES,
+    yearsWithReports: years.size,
+    periodStart,
+    periodEnd,
+    subtypeCount: subtypes.size,
+    periodsReported: periods.size,
+    periodsPossible,
+  };
+}
+
+export interface YearlyTrendPoint {
+  year: number;
+  outbreaks: number;
+  records: number;
+}
+
+/** Zero-filled across the full reporting span so gaps are visible, not hidden. */
+export function getYearlyTrend(): YearlyTrendPoint[] {
+  const { periodStart, periodEnd } = getSummaryMetrics();
+  const byYear = new Map<number, { outbreaks: number; records: number }>();
+  for (const r of wahisRecords) {
+    const entry = byYear.get(r.year) ?? { outbreaks: 0, records: 0 };
+    entry.outbreaks += r.newOutbreaks;
+    entry.records += 1;
+    byYear.set(r.year, entry);
+  }
+  const points: YearlyTrendPoint[] = [];
+  for (let year = periodStart; year <= periodEnd; year++) {
+    const entry = byYear.get(year) ?? { outbreaks: 0, records: 0 };
+    points.push({ year, ...entry });
+  }
+  return points;
+}
+
+export interface SemesterSplit {
+  semester: "H1" | "H2";
+  label: string;
+  outbreaks: number;
+}
+
+export function getSemesterSplit(): SemesterSplit[] {
+  const h1 = wahisRecords.filter((r) => r.semester === "H1").reduce((s, r) => s + r.newOutbreaks, 0);
+  const h2 = wahisRecords.filter((r) => r.semester === "H2").reduce((s, r) => s + r.newOutbreaks, 0);
+  return [
+    { semester: "H1", label: "Jan–Jun", outbreaks: h1 },
+    { semester: "H2", label: "Jul–Dec", outbreaks: h2 },
+  ];
+}
+
+export interface StateSummary {
+  state: string;
+  zone: GeopoliticalZone | undefined;
+  outbreaks: number;
+  records: number;
+}
+
+export function getStateSummary(): StateSummary[] {
+  const byState = new Map<string, { outbreaks: number; records: number }>();
+  for (const r of wahisRecords) {
+    const entry = byState.get(r.state) ?? { outbreaks: 0, records: 0 };
+    entry.outbreaks += r.newOutbreaks;
+    entry.records += 1;
+    byState.set(r.state, entry);
+  }
+  return Array.from(byState.entries())
+    .map(([state, v]) => ({ state, zone: getZoneForState(state), ...v }))
+    .sort((a, b) => b.outbreaks - a.outbreaks);
+}
+
+export interface SubtypeSummary {
+  subtype: BrucellaSubtype;
+  outbreaks: number;
+  records: number;
+  percentOfOutbreaks: number;
+}
+
+export function getSubtypeSummary(): SubtypeSummary[] {
+  const total = getSummaryMetrics().totalOutbreaks;
+  const byType = new Map<BrucellaSubtype, { outbreaks: number; records: number }>();
+  for (const r of wahisRecords) {
+    const entry = byType.get(r.subtype) ?? { outbreaks: 0, records: 0 };
+    entry.outbreaks += r.newOutbreaks;
+    entry.records += 1;
+    byType.set(r.subtype, entry);
+  }
+  return Array.from(byType.entries())
+    .map(([subtype, v]) => ({
+      subtype,
+      ...v,
+      percentOfOutbreaks: Math.round((v.outbreaks / total) * 1000) / 10,
+    }))
+    .sort((a, b) => b.outbreaks - a.outbreaks);
+}
+
+export interface ZoneSummary {
+  zone: GeopoliticalZone;
+  outbreaks: number;
+  statesReporting: number;
+  statesInZone: number;
+}
+
+export function getZoneSummary(): ZoneSummary[] {
+  const stateSummary = getStateSummary();
+  return (Object.keys(ZONE_STATES) as GeopoliticalZone[]).map((zone) => {
+    const statesInThisZone = stateSummary.filter((s) => s.zone === zone);
+    return {
+      zone,
+      outbreaks: statesInThisZone.reduce((sum, s) => sum + s.outbreaks, 0),
+      statesReporting: statesInThisZone.length,
+      statesInZone: ZONE_STATES[zone].length,
+    };
+  }).sort((a, b) => b.outbreaks - a.outbreaks);
+}
+
+export interface FieldAvailability {
+  field: string;
+  availability: "populated" | "not-reported";
+  note: string;
+}
+
+export interface DataQuality {
+  recordCount: number;
+  duplicateRecords: number;
+  statesReporting: number;
+  totalStates: number;
+  geographicCoveragePercent: number;
+  yearsWithReports: number;
+  yearsInSpan: number;
+  temporalCoveragePercent: number;
+  periodsReported: number;
+  periodsPossible: number;
+  periodCoveragePercent: number;
+  fields: FieldAvailability[];
+}
+
+export function getDataQuality(): DataQuality {
+  const summary = getSummaryMetrics();
+  const yearsInSpan = summary.periodEnd - summary.periodStart + 1;
+
+  // Duplicate check: no two records share the same (state, year, semester).
+  const seen = new Set<string>();
+  let duplicateRecords = 0;
+  for (const r of wahisRecords) {
+    const key = `${r.state}|${r.year}|${r.semester}`;
+    if (seen.has(key)) duplicateRecords += 1;
+    seen.add(key);
+  }
+
+  const populatedFields: FieldAvailability[] = [
+    { field: "Year", availability: "populated", note: "100% of records" },
+    { field: "Semester", availability: "populated", note: "100% of records" },
+    { field: "Administrative Division (state)", availability: "populated", note: "100% of records" },
+    { field: "Disease", availability: "populated", note: "Constant: Brucellosis" },
+    { field: "Serotype/Subtype/Genotype", availability: "populated", note: "100% of records" },
+    { field: "Animal Category", availability: "populated", note: "Constant: Both animal categories" },
+    { field: "New outbreaks", availability: "populated", note: "100% of records" },
+  ];
+
+  const unpopulatedFields: FieldAvailability[] = WAHIS_METADATA.unpopulatedFields.map((field) => ({
+    field,
+    availability: "not-reported",
+    note: "Not reported in this WAHIS extract",
+  }));
+
+  return {
+    recordCount: summary.recordCount,
+    duplicateRecords,
+    statesReporting: summary.statesReporting,
+    totalStates: summary.totalStates,
+    geographicCoveragePercent: Math.round((summary.statesReporting / summary.totalStates) * 1000) / 10,
+    yearsWithReports: summary.yearsWithReports,
+    yearsInSpan,
+    temporalCoveragePercent: Math.round((summary.yearsWithReports / yearsInSpan) * 1000) / 10,
+    periodsReported: summary.periodsReported,
+    periodsPossible: summary.periodsPossible,
+    periodCoveragePercent: Math.round((summary.periodsReported / summary.periodsPossible) * 1000) / 10,
+    fields: [...populatedFields, ...unpopulatedFields],
+  };
+}
+
