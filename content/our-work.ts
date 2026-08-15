@@ -39,11 +39,12 @@ export const projects: Project[] = [
     slug: "monitoring-evaluation-dashboard",
     tag: "Monitoring & Evaluation",
     name: "Monitoring & Evaluation Dashboard",
-    status: "Coming Soon",
+    status: "Live",
     overview:
-      "Interactive dashboards that help organisations monitor programme performance and communicate results.",
+      "Interactive dashboards that help organisations monitor programme performance and communicate results — demonstrated live with a Lassa fever surveillance M&E dashboard built for Nigeria.",
     problem: "M&E data often sits in spreadsheets that are hard to read and slower to act on.",
-    tech: ["Power BI", "DHIS2", "SQL"],
+    tech: ["React", "TypeScript", "Recharts"],
+    href: "https://hellojibriva.github.io/lassa-me-dashboard/",
   },
   {
     slug: "research-evidence-platform",
