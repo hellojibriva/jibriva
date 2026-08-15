@@ -56,11 +56,12 @@ export function ProjectCard({ project, variant = "full" }: ProjectCardProps) {
         ) : (
           <a
             href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(project.openInNewTab === false
+              ? {}
+              : { target: "_blank", rel: "noopener noreferrer" })}
             className="mt-5 inline-block text-[14px] font-semibold text-emerald-text hover:text-navy"
           >
-            Explore Platform →
+            {project.ctaLabel ?? "Explore Platform →"}
           </a>
         ))}
     </Card>

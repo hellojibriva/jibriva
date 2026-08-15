@@ -18,6 +18,11 @@ export interface Project {
   tech: string[];
   status: "Live" | "In Development" | "Coming Soon";
   href?: string;
+  // Optional per-project overrides for the external-link CTA. Both default to the
+  // existing card behavior (label "Explore Platform →", opens in a new tab) when
+  // omitted, so existing projects are unaffected.
+  ctaLabel?: string;
+  openInNewTab?: boolean;
 }
 
 export interface InsightArticle {

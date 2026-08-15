@@ -45,6 +45,8 @@ export const projects: Project[] = [
     problem: "M&E data often sits in spreadsheets that are hard to read and slower to act on.",
     tech: ["React", "TypeScript", "Recharts"],
     href: "https://hellojibriva.github.io/lassa-me-dashboard/",
+    ctaLabel: "View Live Dashboard →",
+    openInNewTab: false,
   },
   {
     slug: "research-evidence-platform",
