@@ -1,12 +1,18 @@
 // Transcribed verbatim from the primary source dataset:
-// "Bruscella_WAHIS_Quantitative data 2026-08-10 (1).csv"
+// "Quantitative data 2026-08-18.csv" (re-extraction; confirmed byte-for-byte
+// identical, record for record, to the original "Bruscella_WAHIS_Quantitative
+// data 2026-08-10 (1).csv" extraction — the 24 records below are unchanged).
 // (World Organisation for Animal Health, WAHIS quantitative data, Nigeria,
 // disease = Brucellosis). Every row below corresponds 1:1 to a CSV row.
 // Fields that were constant or 100% empty across all 24 rows (World region,
-// Country, Disease, Animal Category, Event_id, Species, Outbreak_id,
-// Susceptible, Measuring units, Cases, Killed and disposed of, Slaughtered,
-// Deaths, Vaccinated) are captured once in WAHIS_METADATA / getDataQuality()
-// rather than repeated per record. No values are invented or estimated.
+// Country, Animal Category, Event_id, Species, Outbreak_id, Susceptible,
+// Measuring units, Cases, Killed and disposed of, Slaughtered, Deaths,
+// Vaccinated) are captured once in WAHIS_METADATA / getDataQuality() rather
+// than repeated per record. Disease is NOT constant — it varies per row
+// (e.g. "Brucella abortus (Inf. with)") and is the source of the Brucella
+// species/category breakdown captured below as `subtype`. The dedicated
+// Serotype/Subtype/Genotype WAHIS field, distinct from Disease, was
+// unpopulated for all 24 records. No values are invented or estimated.
 
 export type BrucellaSubtype = "Brucella abortus" | "Brucella melitensis" | "Brucella suis";
 export type Semester = "H1" | "H2";
@@ -22,7 +28,7 @@ export interface WahisRecord {
 
 export const WAHIS_METADATA = {
   source: "World Organisation for Animal Health (WOAH) WAHIS Quantitative Data",
-  sourceFile: "Bruscella_WAHIS_Quantitative data 2026-08-10 (1).csv",
+  sourceFile: "Quantitative data 2026-08-18.csv",
   country: "Nigeria",
   worldRegion: "Africa",
   disease: "Brucellosis",

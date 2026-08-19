@@ -128,19 +128,85 @@ export interface ZoneSummary {
   outbreaks: number;
   statesReporting: number;
   statesInZone: number;
+  percentOfOutbreaks: number;
 }
 
 export function getZoneSummary(): ZoneSummary[] {
   const stateSummary = getStateSummary();
+  const total = getSummaryMetrics().totalOutbreaks;
   return (Object.keys(ZONE_STATES) as GeopoliticalZone[]).map((zone) => {
     const statesInThisZone = stateSummary.filter((s) => s.zone === zone);
+    const outbreaks = statesInThisZone.reduce((sum, s) => sum + s.outbreaks, 0);
     return {
       zone,
-      outbreaks: statesInThisZone.reduce((sum, s) => sum + s.outbreaks, 0),
+      outbreaks,
       statesReporting: statesInThisZone.length,
       statesInZone: ZONE_STATES[zone].length,
+      percentOfOutbreaks: Math.round((outbreaks / total) * 1000) / 10,
     };
   }).sort((a, b) => b.outbreaks - a.outbreaks);
+}
+
+export interface StateRankingRow extends StateSummary {
+  rank: number;
+  percentOfOutbreaks: number;
+}
+
+/** State summary with rank and share-of-outbreaks added, for the ranking table. */
+export function getStateRanking(): StateRankingRow[] {
+  const total = getSummaryMetrics().totalOutbreaks;
+  return getStateSummary().map((s, i) => ({
+    ...s,
+    rank: i + 1,
+    percentOfOutbreaks: Math.round((s.outbreaks / total) * 1000) / 10,
+  }));
+}
+
+export interface ZoneConcentration {
+  zones: GeopoliticalZone[];
+  outbreaks: number;
+  totalOutbreaks: number;
+  percent: number;
+}
+
+/** Combined share of reported outbreaks held by the top N zones (sorted by getZoneSummary). */
+export function getTopZoneConcentration(n: number): ZoneConcentration {
+  const zoneSummary = getZoneSummary();
+  const top = zoneSummary.slice(0, n);
+  const outbreaks = top.reduce((sum, z) => sum + z.outbreaks, 0);
+  const totalOutbreaks = getSummaryMetrics().totalOutbreaks;
+  return {
+    zones: top.map((z) => z.zone),
+    outbreaks,
+    totalOutbreaks,
+    percent: Math.round((outbreaks / totalOutbreaks) * 1000) / 10,
+  };
+}
+
+export interface ReportingContinuityCell {
+  year: number;
+  semester: "H1" | "H2";
+  reported: boolean;
+  outbreaks: number;
+}
+
+/** Every half-year period across the full study span, flagged reported/not — the
+ *  32-cell surveillance-continuity grid (not an incidence grid). */
+export function getReportingContinuity(): ReportingContinuityCell[] {
+  const { periodStart, periodEnd } = getSummaryMetrics();
+  const bySemester = new Map<string, number>();
+  for (const r of wahisRecords) {
+    const key = `${r.year}-${r.semester}`;
+    bySemester.set(key, (bySemester.get(key) ?? 0) + r.newOutbreaks);
+  }
+  const cells: ReportingContinuityCell[] = [];
+  for (let year = periodStart; year <= periodEnd; year++) {
+    for (const semester of ["H1", "H2"] as const) {
+      const key = `${year}-${semester}`;
+      cells.push({ year, semester, reported: bySemester.has(key), outbreaks: bySemester.get(key) ?? 0 });
+    }
+  }
+  return cells;
 }
 
 export interface FieldAvailability {
@@ -181,8 +247,11 @@ export function getDataQuality(): DataQuality {
     { field: "Year", availability: "populated", note: "100% of records" },
     { field: "Semester", availability: "populated", note: "100% of records" },
     { field: "Administrative Division (state)", availability: "populated", note: "100% of records" },
-    { field: "Disease", availability: "populated", note: "Constant: Brucellosis" },
-    { field: "Serotype/Subtype/Genotype", availability: "populated", note: "100% of records" },
+    {
+      field: "Disease",
+      availability: "populated",
+      note: "100% of records — varies per row (e.g. \"Brucella abortus (Inf. with)\"); Brucella species/category counts are derived from this field",
+    },
     { field: "Animal Category", availability: "populated", note: "Constant: Both animal categories" },
     { field: "New outbreaks", availability: "populated", note: "100% of records" },
   ];
@@ -192,6 +261,17 @@ export function getDataQuality(): DataQuality {
     availability: "not-reported",
     note: "Not reported in this WAHIS extract",
   }));
+
+  // The dedicated Serotype/Subtype/Genotype field is a distinct case: it was
+  // unpopulated in the extract, but (unlike the fields above) Brucella
+  // species/category counts are still available via the Disease field. Given
+  // its own entry, rather than the generic note, so this distinction is not lost.
+  const serotypeSubtypeGenotypeField: FieldAvailability = {
+    field: "Serotype/Subtype/Genotype (dedicated WAHIS field)",
+    availability: "not-reported",
+    note:
+      "The dedicated Serotype/Subtype/Genotype field was unpopulated in the extracted dataset. However, Brucella infection categories were available through the Disease field, from which B. abortus, B. melitensis and B. suis counts were derived.",
+  };
 
   return {
     recordCount: summary.recordCount,
@@ -205,7 +285,7 @@ export function getDataQuality(): DataQuality {
     periodsReported: summary.periodsReported,
     periodsPossible: summary.periodsPossible,
     periodCoveragePercent: Math.round((summary.periodsReported / summary.periodsPossible) * 1000) / 10,
-    fields: [...populatedFields, ...unpopulatedFields],
+    fields: [...populatedFields, serotypeSubtypeGenotypeField, ...unpopulatedFields],
   };
 }
 
