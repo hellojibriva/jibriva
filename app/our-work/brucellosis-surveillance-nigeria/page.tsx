@@ -103,7 +103,7 @@ export default function BrucellosisSurveillancePage() {
       claim: `${summary.totalOutbreaks} reported outbreaks were identified across ${summary.recordCount} WAHIS quantitative records between ${summary.periodStart} and ${summary.periodEnd}.`,
     },
     {
-      claim: `Only ${summary.statesReporting} of Nigeria's ${summary.totalStates - 1} first-level administrative units were represented, with WAHIS records occurring in ${summary.yearsWithReports} of ${yearsInSpan} years and ${summary.periodsReported} of ${summary.periodsPossible} possible half-year periods.`,
+      claim: `Only ${summary.statesReporting} of Nigeria's ${summary.totalStates} first-level administrative units (${summary.totalStates - 1} states and the Federal Capital Territory) were represented, with WAHIS records occurring in ${summary.yearsWithReports} of ${yearsInSpan} years and ${summary.periodsReported} of ${summary.periodsPossible} possible half-year periods.`,
     },
     {
       claim: `${topZones.zones.join(" and ")} accounted for ${topZones.outbreaks} of ${topZones.totalOutbreaks} reported outbreaks (${topZones.percent}%).`,
