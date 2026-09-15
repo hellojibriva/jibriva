@@ -7,7 +7,11 @@ import { projects } from "@/content/our-work";
 export function OurWorkTeaser() {
   const teaserProjects = ourWorkTeaser.slugs
     .map((slug) => projects.find((project) => project.slug === slug))
-    .filter((project): project is NonNullable<typeof project> => Boolean(project));
+    .filter((project): project is NonNullable<typeof project> => Boolean(project))
+    .map((project) => {
+      const overview = ourWorkTeaser.overviewOverrides[project.slug];
+      return overview ? { ...project, overview } : project;
+    });
 
   return (
     <Section background="neutral">

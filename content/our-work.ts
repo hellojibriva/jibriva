@@ -29,11 +29,14 @@ export const projects: Project[] = [
     slug: "gis-dashboard",
     tag: "GIS",
     name: "GIS Dashboard",
-    status: "In Development",
-    overview: "Spatial tools that support planning, surveillance and geographic analysis.",
+    status: "Live",
+    overview:
+      "Spatial tools that support planning, surveillance and geographic analysis. State-level choropleth maps of reported Rabies, HPAI, and Trypanosomosis outbreaks across Nigeria (WAHIS, 2006–2025), distinguishing genuine reporting gaps from confirmed zero-outbreak states.",
     problem:
-      "Programme teams often plan and target interventions without a clear view of where need is highest.",
-    tech: ["QGIS", "ArcGIS", "Dashboards"],
+      "Programme teams often plan and target interventions without a clear view of where need is highest — and in animal-health surveillance specifically, reporting gaps can be mistaken for disease absence, obscuring where investment is actually needed.",
+    tech: ["QGIS", "ArcGIS", "Dashboards", "WAHIS", "One Health"],
+    href: "https://github.com/hellojibriva/Nigeria-zoonotic-disease-mapping",
+    ctaLabel: "Read more",
   },
   {
     slug: "monitoring-evaluation-dashboard",
