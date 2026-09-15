@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Programme teams often plan and target interventions without a clear view of where need is highest — and in animal-health surveillance specifically, reporting gaps can be mistaken for disease absence, obscuring where investment is actually needed.",
     tech: ["QGIS", "ArcGIS", "Dashboards", "WAHIS", "One Health"],
     href: "https://github.com/hellojibriva/Nigeria-zoonotic-disease-mapping",
-    ctaLabel: "View Project →",
+    ctaLabel: "Read more",
   },
   {
     slug: "monitoring-evaluation-dashboard",
