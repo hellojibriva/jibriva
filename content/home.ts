@@ -128,6 +128,13 @@ export const ourWorkTeaser = {
   h2: "Our project archive, taking shape.",
   linkLabel: "Explore Our Work →",
   slugs: ["one-health-hub", "monitoring-evaluation-dashboard", "gis-dashboard"],
+  // Shorter overviews for the homepage teaser only, keyed by project slug. The
+  // full text stays on the /our-work card; these keep teaser cards level with
+  // their neighbours in height.
+  overviewOverrides: {
+    "gis-dashboard":
+      "State-level QGIS disease surveillance maps for Nigeria (WAHIS, 2006–2025).",
+  } as Record<string, string>,
 };
 
 export const resourcesPublications = {
