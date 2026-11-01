@@ -96,12 +96,12 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
             </div>
           </aside>
 
-          {/* Related notes: only real, published notes appear here. */}
-          <section aria-labelledby="more-notes" className="mt-12">
-            <h2 id="more-notes" className="label-heading text-[12.5px] uppercase tracking-[0.1em] text-gold-text">
-              More from {fieldNotes.name}
-            </h2>
-            {others.length > 0 ? (
+          {/* Related notes: shown only once there are other published notes. */}
+          {others.length > 0 && (
+            <section aria-labelledby="more-notes" className="mt-12">
+              <h2 id="more-notes" className="label-heading text-[12.5px] uppercase tracking-[0.1em] text-gold-text">
+                More from {fieldNotes.name}
+              </h2>
               <ul className="mt-4 space-y-3">
                 {others.map((p) => (
                   <li key={p.slug}>
@@ -111,15 +111,8 @@ export default async function ArticlePage({ params }: PageProps<"/blog/[slug]">)
                   </li>
                 ))}
               </ul>
-            ) : (
-              <p className="mt-3 text-[15.5px] text-text-muted">
-                This is the first note. More will follow here.{" "}
-                <Link href="/blog" className="font-semibold text-navy underline decoration-gold underline-offset-2 hover:text-gold-text">
-                  Back to {fieldNotes.name}
-                </Link>
-              </p>
-            )}
-          </section>
+            </section>
+          )}
         </div>
       </article>
 
