@@ -51,12 +51,7 @@ export function IntelligencePanel() {
       className="overflow-hidden rounded-[12px] border border-border bg-ivory shadow-[0_30px_70px_-40px_rgba(15,23,42,0.55)]"
     >
       <header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-border px-4 py-3 sm:px-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <p className="label-heading text-[11.5px] uppercase tracking-[0.12em] text-gold-text">Programme intelligence</p>
-          <span className="rounded-[4px] border border-border px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-text-muted">
-            Demonstration data
-          </span>
-        </div>
+        <p className="label-heading text-[11.5px] uppercase tracking-[0.12em] text-gold-text">Programme intelligence</p>
         <div role="tablist" aria-label="Panel views" className="flex rounded-full border border-border bg-cream p-0.5 max-sm:w-full">
           {VIEWS.map((v) => (
             <button

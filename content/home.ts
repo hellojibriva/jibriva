@@ -102,8 +102,8 @@ export const experienceSnapshot = {
  * PSHAN uses the overview page of Abi's own PHC Performance Dashboard
  * (exported PDF, page 1, rendered at 200 dpi), reconstructed with fictional
  * demonstration figures in place of every real value (chart labels scaled to
- * match the bars; axis scale numbers removed), and labelled as such on the
- * card. Script: Jibriva/archive/experience-screen-sources. ACHIEVE and ASPIRE use screens
+ * match the bars; axis scale numbers removed). No on-card label, at Abi's
+ * request; the alt text still says the figures are fictional. Script: Jibriva/archive/experience-screen-sources. ACHIEVE and ASPIRE use screens
  * built for this site (fictional data; HTML sources in
  * Jibriva/archive/experience-screen-sources). WHO uses a drawn panel until a
  * genuine photograph that matches the brief is supplied.
@@ -114,8 +114,6 @@ export const experienceVisuals: Record<string, ExperienceVisual> = {
     src: "/experience/pshan-dashboard-reconstructed.png",
     alt: "Reconstructed preview of a Power BI PHC Performance Dashboard overview, showing fictional demonstration figures for reporting completeness, patients seen, deliveries, ANC4 retention, IPTp3, malaria positivity, family planning and monthly trends",
     position: "50% 0%",
-    label: "Illustrative figures",
-    caption: "Reconstructed dashboard preview using fictional figures; not actual PSHAN programme results.",
   },
   "SCIDaR-2023 – 2026": {
     kind: "image",
