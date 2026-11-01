@@ -26,6 +26,7 @@ export const siteConfig = {
     { label: "Projects", href: "/projects" },
     { label: "Experience", href: "/experience" },
     { label: "Resume", href: "/resume" },
+    { label: "Field Notes", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ] satisfies NavItem[],
   legal: [

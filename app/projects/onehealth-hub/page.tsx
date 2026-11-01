@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CaseStudyNav } from "@/components/projects/CaseStudyNav";
 import { FeatureShot, ShotComposition } from "@/components/projects/ScreenshotShowcase";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -17,6 +18,8 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const h2 = "text-[clamp(30px,4vw,50px)] leading-[1.05] tracking-[-0.02em]";
+// Chapters land below the sticky site header and chapter bar.
+const chapterOffset = "scroll-mt-[128px]";
 
 /*
  * A project showcase rather than a report: the real prototype screens lead,
@@ -85,8 +88,10 @@ export default function OneHealthHubPage() {
         </div>
       </div>
 
-      {/* The challenge and the design question */}
-      <Section>
+      <CaseStudyNav chapters={s.chapters} />
+
+      {/* 01 The challenge and the design question; 02 why it matters */}
+      <Section id="challenge" className={chapterOffset}>
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-[clamp(32px,6vw,96px)] max-lg:grid-cols-1">
           <div>
             <h2 className={`${h2} text-navy`}>{s.challenge.heading}</h2>
@@ -98,24 +103,15 @@ export default function OneHealthHubPage() {
           </figure>
         </div>
 
-        <dl className="mt-[clamp(40px,6vw,72px)] grid grid-cols-[1fr_auto_1fr] items-stretch border border-border bg-ivory max-md:grid-cols-1">
-          <div className="p-[clamp(20px,3vw,32px)]">
-            <dt className="font-serif text-[21px] font-semibold text-navy">{s.challenge.distinction[0].term}</dt>
-            <dd className="mt-2 text-[15.5px] leading-relaxed text-text-muted">{s.challenge.distinction[0].text}</dd>
-          </div>
-          <div aria-hidden="true" className="flex items-center justify-center border-border px-4 font-serif text-[15px] italic text-gold-text md:border-x max-md:border-y max-md:py-2">
-            is not a
-          </div>
-          <div className="p-[clamp(20px,3vw,32px)]">
-            <dt className="font-serif text-[21px] font-semibold text-navy">{s.challenge.distinction[1].term}</dt>
-            <dd className="mt-2 text-[15.5px] leading-relaxed text-text-muted">{s.challenge.distinction[1].text}</dd>
-          </div>
-        </dl>
+        <div id="why" className={`mt-[clamp(48px,6vw,80px)] grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-[clamp(20px,6vw,96px)] border-t border-border pt-[clamp(28px,4vw,48px)] max-lg:grid-cols-1 ${chapterOffset}`}>
+          <h2 className="text-[clamp(26px,3vw,36px)] leading-tight text-navy">Why it matters</h2>
+          <p className="text-[17px] leading-relaxed text-text sm:text-[18px]">{s.whyItMatters}</p>
+        </div>
       </Section>
 
-      {/* How it works: one connected path */}
-      <Section background="dark" backdrop="static">
-        <Eyebrow tone="dark">How the prototype works</Eyebrow>
+      {/* 03 My approach: one connected path, and the design decision under it */}
+      <Section id="approach" background="dark" backdrop="static" className={chapterOffset}>
+        <Eyebrow tone="dark">My approach</Eyebrow>
         <h2 className={`mt-3 max-w-[760px] ${h2} text-white`}>From a community report back to a community message</h2>
 
         <ol className="relative mt-[clamp(48px,7vw,88px)] grid grid-cols-4 gap-[clamp(20px,3vw,40px)] max-md:grid-cols-1 max-md:gap-10 max-md:pl-10">
@@ -136,12 +132,27 @@ export default function OneHealthHubPage() {
             </li>
           ))}
         </ol>
+
+        <p className="mt-[clamp(48px,6vw,72px)] text-[12.5px] font-semibold uppercase tracking-[0.12em] text-gold">A design decision</p>
+        <dl className="mt-4 grid grid-cols-[1fr_auto_1fr] items-stretch border border-border bg-ivory max-md:grid-cols-1">
+          <div className="p-[clamp(20px,3vw,32px)]">
+            <dt className="font-serif text-[21px] font-semibold text-navy">{s.challenge.distinction[0].term}</dt>
+            <dd className="mt-2 text-[15.5px] leading-relaxed text-text-muted">{s.challenge.distinction[0].text}</dd>
+          </div>
+          <div aria-hidden="true" className="flex items-center justify-center border-border px-4 font-serif text-[15px] italic text-gold-text md:border-x max-md:border-y max-md:py-2">
+            is not a
+          </div>
+          <div className="p-[clamp(20px,3vw,32px)]">
+            <dt className="font-serif text-[21px] font-semibold text-navy">{s.challenge.distinction[1].term}</dt>
+            <dd className="mt-2 text-[15.5px] leading-relaxed text-text-muted">{s.challenge.distinction[1].text}</dd>
+          </div>
+        </dl>
       </Section>
 
-      {/* The prototype screens */}
-      <Section>
+      {/* 04 What I developed: the prototype screens */}
+      <Section id="developed" className={chapterOffset}>
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className={`${h2} text-navy`}>Inside the prototype</h2>
+          <h2 className={`${h2} text-navy`}>What I developed</h2>
           <p className="max-w-[420px] text-[15.5px] text-text-muted">Captured from the live prototype. Figures shown are records held in the prototype, not official surveillance statistics.</p>
         </div>
         <div className="mt-[clamp(32px,5vw,64px)]">
@@ -149,9 +160,9 @@ export default function OneHealthHubPage() {
         </div>
       </Section>
 
-      {/* What is built, and what is only a concept */}
-      <Section background="band">
-        <h2 className={`${h2} text-navy`}>What has been built</h2>
+      {/* 05 Key features: what is built, and what is only a concept */}
+      <Section id="features" background="band" className={chapterOffset}>
+        <h2 className={`${h2} text-navy`}>Key features</h2>
         <div className="mt-[clamp(28px,4vw,48px)] grid grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-[clamp(20px,3vw,40px)] max-lg:grid-cols-1">
           <div className="border-t-2 border-navy pt-6">
             <p className="text-[12.5px] font-semibold uppercase tracking-[0.12em] text-navy">Implemented</p>
@@ -186,8 +197,9 @@ export default function OneHealthHubPage() {
         </div>
       </Section>
 
-      {/* Contribution and limitations */}
-      <Section>
+      {/* 06 Limitations and lessons, with my contribution */}
+      <Section id="limitations" className={chapterOffset}>
+        <h2 className={`${h2} mb-[clamp(28px,4vw,48px)] text-navy`}>Limitations and lessons</h2>
         <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-[clamp(32px,6vw,96px)] max-lg:grid-cols-1">
           <div>
             <Eyebrow>My contribution</Eyebrow>
@@ -202,6 +214,15 @@ export default function OneHealthHubPage() {
                 <li key={f} className="flex gap-3">
                   <span aria-hidden="true" className="mt-[9px] h-[5px] w-[5px] shrink-0 bg-gold" />
                   {f}
+                </li>
+              ))}
+            </ul>
+            <Eyebrow className="mt-8">Lessons</Eyebrow>
+            <ul className="mt-3 space-y-2.5 text-[15.5px] leading-relaxed text-text">
+              {s.lessons.map((l) => (
+                <li key={l} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-[9px] h-[5px] w-[5px] shrink-0 bg-gold" />
+                  {l}
                 </li>
               ))}
             </ul>

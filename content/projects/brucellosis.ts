@@ -98,22 +98,8 @@ export const brucellosis: CaseStudy = {
   },
   sections: [
     {
-      id: "background",
-      title: "Background and public health relevance",
-      blocks: [
-        {
-          type: "p",
-          text: "Brucellosis is a zoonotic bacterial disease of livestock that can also infect people, which makes it a natural case for a One Health view of surveillance.",
-        },
-        {
-          type: "p",
-          text: "National reporting to WOAH-WAHIS is one of the few consistent, public sources of animal-health surveillance data. Understanding what those records can and cannot show is a prerequisite for using them well.",
-        },
-      ],
-    },
-    {
       id: "question",
-      title: "Research question and objectives",
+      title: "The question",
       blocks: [
         {
           type: "callout",
@@ -133,40 +119,24 @@ export const brucellosis: CaseStudy = {
       ],
     },
     {
-      id: "maps",
-      title: "Research maps",
+      id: "background",
+      title: "Why it matters",
       blocks: [
         {
           type: "p",
-          text: "Two reference maps from the analysis pipeline keep reported cases and recorded outbreaks apart. Every headline figure in the report is reconciled against the source data by automated validation checks.",
+          text: "Brucellosis is a zoonotic bacterial disease of livestock that can also infect people, which makes it a natural case for a One Health view of surveillance.",
         },
         {
-          type: "figures",
-          items: [
-            {
-              src: `${IMG}/map-reported-cases.png`,
-              width: 898,
-              height: 809,
-              alt: "Choropleth map of reported brucellosis cases by state, Nigeria, 2008–2025; Adamawa darkest at 140; grey states have no record",
-              caption:
-                "Reported cases by state, 2008–2025. Grey = no record. Reference figure from the analysis pipeline. Boundaries: OCHA COD-AB (HDX); data: WOAH-WAHIS.",
-            },
-            {
-              src: `${IMG}/map-recorded-outbreaks.png`,
-              width: 890,
-              height: 809,
-              alt: "Choropleth map of recorded new brucellosis outbreaks by state, Nigeria, 2008–2025; Kano darkest at 12; grey states have no record",
-              caption:
-                "Recorded new outbreaks by state, 2008–2025. Grey = no record. Boundaries: OCHA COD-AB (HDX); data: WOAH-WAHIS.",
-            },
-          ],
+          type: "p",
+          text: "National reporting to WOAH-WAHIS is one of the few consistent, public sources of animal-health surveillance data. Understanding what those records can and cannot show is a prerequisite for using them well.",
         },
       ],
     },
     {
-      id: "data",
-      title: "Data source and study period",
+      id: "approach",
+      title: "My approach",
       blocks: [
+        { type: "subhead", text: "Data" },
         {
           type: "list",
           items: [
@@ -176,12 +146,7 @@ export const brucellosis: CaseStudy = {
             "State boundaries for mapping: OCHA Common Operational Datasets, Nigeria admin-1 (HDX).",
           ],
         },
-      ],
-    },
-    {
-      id: "approach",
-      title: "Data preparation and analytical approach",
-      blocks: [
+        { type: "subhead", text: "Preparation and analysis" },
         {
           type: "steps",
           steps: [
@@ -215,6 +180,37 @@ export const brucellosis: CaseStudy = {
       ],
     },
     {
+      id: "maps",
+      title: "What I analysed",
+      blocks: [
+        {
+          type: "p",
+          text: "Two reference maps from the analysis pipeline keep reported cases and recorded outbreaks apart. Every headline figure in the report is reconciled against the source data by automated validation checks.",
+        },
+        {
+          type: "figures",
+          items: [
+            {
+              src: `${IMG}/map-reported-cases.png`,
+              width: 898,
+              height: 809,
+              alt: "Choropleth map of reported brucellosis cases by state, Nigeria, 2008–2025; Adamawa darkest at 140; grey states have no record",
+              caption:
+                "Reported cases by state, 2008–2025. Grey = no record. Reference figure from the analysis pipeline. Boundaries: OCHA COD-AB (HDX); data: WOAH-WAHIS.",
+            },
+            {
+              src: `${IMG}/map-recorded-outbreaks.png`,
+              width: 890,
+              height: 809,
+              alt: "Choropleth map of recorded new brucellosis outbreaks by state, Nigeria, 2008–2025; Kano darkest at 12; grey states have no record",
+              caption:
+                "Recorded new outbreaks by state, 2008–2025. Grey = no record. Boundaries: OCHA COD-AB (HDX); data: WOAH-WAHIS.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "findings",
       title: "Key findings",
       blocks: [
@@ -238,11 +234,22 @@ export const brucellosis: CaseStudy = {
             "Reporting is sparse before 2017 and continuous from 2017; 62.8% of outbreaks (49 of 78) were recorded in 2021–2025, consistent with more regular recent reporting.",
           ],
         },
+        { type: "subhead", text: "One Health and surveillance implications" },
+        { type: "p", text: "The gaps in the records point to what the reporting system would need:" },
+        {
+          type: "list",
+          items: [
+            "Routine semi-annual reporting from all 36 states and the FCT, so that gaps reflect absence of disease rather than absence of reports.",
+            "Event or outbreak identifiers, laboratory confirmation methods and Brucella typing, to allow linkage and de-duplication.",
+            "Host species recorded at outbreak level.",
+            "Linkage between animal and human brucellosis surveillance, and joint risk assessment between veterinary and public health services.",
+          ],
+        },
       ],
     },
     {
       id: "limitations",
-      title: "Interpretation and limitations",
+      title: "Limitations and lessons",
       blocks: [
         {
           type: "callout",
@@ -262,28 +269,7 @@ export const brucellosis: CaseStudy = {
             "Outbreak counts cannot be attributed to host species.",
           ],
         },
-      ],
-    },
-    {
-      id: "one-health",
-      title: "One Health and surveillance implications",
-      blocks: [
-        { type: "p", text: "The gaps in the records point to what the reporting system would need:" },
-        {
-          type: "list",
-          items: [
-            "Routine semi-annual reporting from all 36 states and the FCT, so that gaps reflect absence of disease rather than absence of reports.",
-            "Event or outbreak identifiers, laboratory confirmation methods and Brucella typing, to allow linkage and de-duplication.",
-            "Host species recorded at outbreak level.",
-            "Linkage between animal and human brucellosis surveillance, and joint risk assessment between veterinary and public health services.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "further",
-      title: "Further research opportunities",
-      blocks: [
+        { type: "subhead", text: "Further research" },
         {
           type: "list",
           items: [

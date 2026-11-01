@@ -34,6 +34,9 @@ export function ClosingCta() {
             className="text-white/70 hover:text-gold"
           />
         </li>
+        <li>
+          <SocialIcon platform="github" href={siteConfig.social.github} label="GitHub" className="text-white/70 hover:text-gold" />
+        </li>
       </ul>
     </Section>
   );

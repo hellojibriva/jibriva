@@ -10,6 +10,10 @@ export type ExperienceVisual =
       alt: string;
       /** CSS object-position, so the crop keeps the subject in frame. */
       position?: string;
+      /** Short disclosure shown on the image, e.g. "Illustrative figures". */
+      label?: string;
+      /** One-line note shown directly under the image. */
+      caption?: string;
     }
   | { kind: "panel"; panel: "register" };
 
@@ -42,7 +46,17 @@ export function ExperienceCard({ role, index, visual }: { role: CareerRole; inde
         <span aria-hidden="true" className="absolute bottom-3 left-3 rounded-[4px] bg-ink/80 px-2 py-0.5 font-serif text-[14px] text-paper">
           {String(index + 1).padStart(2, "0")}
         </span>
+        {visual.kind === "image" && visual.label && (
+          <span className="absolute top-3 right-3 rounded-[4px] border border-gold/60 bg-ink/85 px-2 py-0.5 text-[11.5px] font-semibold tracking-[0.04em] text-paper">
+            {visual.label}
+          </span>
+        )}
       </div>
+      {visual.kind === "image" && visual.caption && (
+        <p className="border-b border-border bg-cream/60 px-[clamp(18px,2.2vw,26px)] py-2 text-[12.5px] leading-snug text-text-muted">
+          {visual.caption}
+        </p>
+      )}
       <div className="flex flex-1 flex-col p-[clamp(18px,2.2vw,26px)]">
         <p className="text-[13px] font-semibold tracking-[0.06em] text-gold-text">{role.years}</p>
         <h3 className="mt-1.5 text-[clamp(19px,1.9vw,23px)] leading-snug text-navy">{role.title}</h3>

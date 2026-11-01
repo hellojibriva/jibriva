@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { CaseBlocks } from "@/components/projects/CaseBlocks";
+import { CaseStudyNav } from "@/components/projects/CaseStudyNav";
 import { CaseStudySection, FactGrid } from "@/components/projects/CaseStudyParts";
 import { DashboardGallery } from "@/components/projects/DashboardGallery";
 import { Button } from "@/components/ui/Button";
@@ -133,7 +134,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
             </details>
             <div className="max-lg:hidden">
               <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-gold-text">On this page</p>
-              <TocList sections={sections} />
+              {/* Highlights the chapter being read. */}
+              <CaseStudyNav variant="list" label="On this page" chapters={sections.map((sec) => ({ id: sec.id, label: sec.title }))} />
             </div>
           </nav>
 

@@ -19,6 +19,12 @@ export interface CareerRole {
   /** Years only, for the homepage snapshot, e.g. "2023 – 2026". */
   years: string;
   responsibilities: string[];
+  /** One-line programme context, from the CV. */
+  context?: string;
+  /** Systems and tools named for this role in the CV. */
+  tools?: string[];
+  /** One achievement stated in the CV for this role, if any. */
+  highlight?: string;
 }
 
 export interface SkillCategory {

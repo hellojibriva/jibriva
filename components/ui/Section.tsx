@@ -13,13 +13,16 @@ interface SectionProps {
   backdrop?: "static" | "animated";
   className?: string;
   contentClassName?: string;
+  /** Anchor id, e.g. for a case-study chapter. */
+  id?: string;
 }
 
-export function Section({ children, background = "white", backdrop, className, contentClassName }: SectionProps) {
+export function Section({ children, background = "white", backdrop, className, contentClassName, id }: SectionProps) {
   const dark = background === "dark";
 
   return (
     <section
+      id={id}
       className={cn(
         "relative isolate overflow-hidden px-[clamp(20px,5vw,64px)] py-[clamp(64px,9vw,120px)]",
         background === "band" && "surface-ivory",

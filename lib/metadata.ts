@@ -6,7 +6,7 @@ interface PageMetadataInput {
   title?: string;
   description: string;
   path: string;
-  ogType?: "website" | "profile";
+  ogType?: "website" | "profile" | "article";
   noIndex?: boolean;
 }
 

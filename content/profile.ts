@@ -13,6 +13,9 @@ export const career: CareerRole[] = [
     organisationShort: "PSHAN",
     period: "February 2026 – Present",
     years: "2026 – Present",
+    context: "A programme supporting a network of revitalised primary healthcare facilities, monitored through routine facility HMIS data.",
+    tools: ["Routine HMIS data", "Microsoft Excel", "Power BI dashboards", "Programme reports and presentations"],
+    highlight: "Developed an HMIS and data-quality training plan, and family planning and mortality reporting checklists, to tackle recurring data-quality gaps.",
     responsibilities: [
       "I support programme monitoring, implementation follow-up and performance analysis across a network of revitalised primary healthcare facilities.",
       "I consolidate, clean, validate and analyse routine facility HMIS data, and follow up with facilities on missing, inconsistent or unusual values.",
@@ -28,6 +31,9 @@ export const career: CareerRole[] = [
     organisationShort: "SCIDaR",
     period: "January 2023 – February 2026",
     years: "2023 – 2026",
+    context: "PEPFAR-funded HIV prevention, testing, treatment, care and PMTCT services across supported health facilities.",
+    tools: ["NHLMIS", "CRRF", "Google Forms", "Microsoft Excel"],
+    highlight: "New reporting routines contributed to previously low-performing facilities moving from the red category on the NHLMIS dashboard into the top 10.",
     responsibilities: [
       "I led the PMTCT workstream, coordinating activities, tracking implementation, and supporting alignment with national HIV guidelines, targets and standard operating procedures.",
       "I monitored HIV indicators for testing, PMTCT, retention, viral-load coverage and treatment outcomes, and contributed to weekly, monthly and quarterly programme reports.",
@@ -43,6 +49,8 @@ export const career: CareerRole[] = [
     organisationShort: "SCIDaR",
     period: "March 2021 – December 2022",
     years: "2021 – 2022",
+    context: "A PEPFAR/USAID HIV programme, where routine patient and programme data fed national reporting.",
+    tools: ["DHIS2"],
     responsibilities: [
       "I entered and maintained patient and programme data in DHIS2 and related reporting workflows.",
       "I ran routine checks for missing or inconsistent information, and supported data validation, reconciliation and timely reporting.",
@@ -56,6 +64,7 @@ export const career: CareerRole[] = [
     organisationShort: "WHO, Jigawa State",
     period: "November 2016 – October 2017",
     years: "2016 – 2017",
+    context: "Polio vaccination campaigns in Jigawa State, during National Youth Service, including hard-to-reach communities.",
     responsibilities: [
       "I supported field surveillance, data collection and independent monitoring during polio vaccination campaigns, including in hard-to-reach communities.",
       "I contributed to campaign microplanning and data collation, and reported implementation gaps to the relevant stakeholders.",

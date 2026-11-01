@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/Hero";
+import { CareerTimeline } from "@/components/sections/CareerTimeline";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
@@ -24,39 +25,9 @@ export default function ExperiencePage() {
     <>
       <PageHero eyebrow={experienceHero.eyebrow} h1={experienceHero.h1} paragraph={experienceHero.paragraph} />
 
-      {/* Roles: a progression from 2016 to now. */}
+      {/* Roles: an interactive progression from 2016 to now. */}
       <Section className="pt-[clamp(48px,6vw,80px)]">
-        <div className="relative border-l border-navy/15 md:ml-[180px]">
-          {roles.map((role, i) => (
-            <article key={`${role.organisationShort}-${role.years}`} className="relative pb-[clamp(48px,6vw,80px)] pl-8 last:pb-0 md:pl-12">
-              <span
-                aria-hidden="true"
-                className="absolute -left-[7px] top-2 h-[13px] w-[13px] rounded-full border-2 border-gold bg-cream"
-              />
-              <p className="text-[13px] font-semibold tracking-[0.06em] text-gold-text md:absolute md:-left-[180px] md:top-1.5 md:w-[150px] md:text-right">
-                {role.years}
-              </p>
-              <p className="mt-1 text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted md:mt-0">
-                {String(i + 1).padStart(2, "0")} · {role.organisationShort}
-              </p>
-              <h2 className="mt-2 text-[clamp(24px,2.8vw,34px)] leading-[1.1] text-navy">{role.title}</h2>
-              <p className="mt-1.5 text-[15.5px] text-text-muted">
-                {role.programme} · {role.organisation}
-              </p>
-              <p className="mt-4 max-w-[640px] border-l-2 border-gold pl-4 font-serif text-[18px] italic leading-snug text-navy/85">
-                {progressionFor(role.organisationShort, role.years)}
-              </p>
-              <ul className="mt-5 max-w-[720px] space-y-2.5">
-                {role.responsibilities.map((item) => (
-                  <li key={item.slice(0, 40)} className="flex gap-3 text-[15.5px] leading-relaxed text-text">
-                    <span aria-hidden="true" className="mt-[10px] h-[6px] w-[6px] shrink-0 bg-gold" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <CareerTimeline roles={roles} notes={roles.map((r) => progressionFor(r.organisationShort, r.years))} />
       </Section>
 
       {/* Achievements — only things stated in the CV or completed projects on this site. */}

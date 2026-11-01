@@ -40,10 +40,55 @@ export const whatIBring = {
     },
   ],
   direction: {
-    label: "Research and innovation direction",
     title: "Digital Innovation & One Health",
     desc: "Exploring how digital tools, integrated surveillance and multisectoral approaches can strengthen public health systems and disease reporting.",
   },
+};
+
+/** Organisations Abi has worked for (employment only; text marks, no logos). */
+export const organisations = {
+  label: "Where I've worked",
+  items: [
+    { short: "PSHAN", name: "Private Sector Health Alliance of Nigeria" },
+    { short: "SCIDaR", name: "Solina Centre for International Development and Research" },
+    { short: "WHO", name: "World Health Organization, Jigawa State" },
+  ],
+};
+
+/*
+ * "How I work": a working approach drawn from Abi's roles, not a formal
+ * methodology. Each "inWork" example is stated in her CV.
+ */
+export const howIWork = {
+  h2: "How I work",
+  intro: "The loop I follow on programmes, from understanding a problem to fixing it.",
+  stages: [
+    {
+      name: "Understand",
+      text: "Assess the programme context, identify implementation challenges and understand where service delivery falls short.",
+      inWork: "On ASPIRE, I used a Google Forms assessment to find out why facilities were reporting late, and analysed the feedback in Excel.",
+    },
+    {
+      name: "Plan",
+      text: "Translate programme priorities into activities, workplans, deliverables and monitoring arrangements.",
+      inWork: "I prepared activity plans with estimated costs for patient-tracking activities, and monitored spending against approved budgets.",
+    },
+    {
+      name: "Implement",
+      text: "Coordinate activities, support facilities and stakeholders, and follow through on programme delivery.",
+      inWork: "I led the PMTCT workstream, coordinating programme staff, facility focal persons and community mobilisers.",
+    },
+    {
+      name: "Monitor",
+      text: "Review indicators, assess data quality, track performance and communicate what the data shows.",
+      inWork: "At PSHAN I turn routine HMIS data into monthly indicator analyses, dashboards and reports for programme reviews.",
+    },
+    {
+      name: "Improve",
+      text: "Identify gaps, strengthen reporting processes and use evidence to guide corrective action.",
+      inWork: "Weekly reporting and register reviews I introduced helped low-performing facilities move into the NHLMIS top 10.",
+    },
+  ],
 };
 
 export const experienceSnapshot = {
@@ -55,8 +100,10 @@ export const experienceSnapshot = {
 /*
  * One visual per role, keyed by `${organisationShort}-${years}`.
  * PSHAN uses the overview page of Abi's own PHC Performance Dashboard
- * (exported PDF, page 1, rendered at 200 dpi), anonymised: every figure,
- * axis value, the coverage subtitle and the headline text are blurred. ACHIEVE and ASPIRE use screens
+ * (exported PDF, page 1, rendered at 200 dpi), reconstructed with fictional
+ * demonstration figures in place of every real value (chart labels scaled to
+ * match the bars; axis scale numbers removed), and labelled as such on the
+ * card. Script: Jibriva/archive/experience-screen-sources. ACHIEVE and ASPIRE use screens
  * built for this site (fictional data; HTML sources in
  * Jibriva/archive/experience-screen-sources). WHO uses a drawn panel until a
  * genuine photograph that matches the brief is supplied.
@@ -64,9 +111,11 @@ export const experienceSnapshot = {
 export const experienceVisuals: Record<string, ExperienceVisual> = {
   "PSHAN-2026 – Present": {
     kind: "image",
-    src: "/experience/pshan-phc-dashboard-overview.png",
-    alt: "Overview page of a Power BI PHC Performance Dashboard: reporting completeness, patients seen, deliveries, ANC4 retention, IPTp3, malaria positivity, family planning and monthly trend charts",
+    src: "/experience/pshan-dashboard-reconstructed.png",
+    alt: "Reconstructed preview of a Power BI PHC Performance Dashboard overview, showing fictional demonstration figures for reporting completeness, patients seen, deliveries, ANC4 retention, IPTp3, malaria positivity, family planning and monthly trends",
     position: "50% 0%",
+    label: "Illustrative figures",
+    caption: "Reconstructed dashboard preview using fictional figures; not actual PSHAN programme results.",
   },
   "SCIDaR-2023 – 2026": {
     kind: "image",
@@ -94,6 +143,6 @@ export const featuredProject = {
 
 export const closingCta = {
   h2: "Working on a programme, a research question or a role where this fits?",
-  paragraph: "I'd like to hear about it.",
+  paragraph: "I'd like to hear about it — programme implementation, MEAL, research, surveillance or One Health.",
   primaryLabel: "Get in touch",
 };

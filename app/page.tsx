@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ExperienceCard } from "@/components/sections/ExperienceCard";
 import { HomeHero } from "@/components/sections/Hero";
+import { HowIWork } from "@/components/sections/HowIWork";
 import { FeaturedProject } from "@/components/sections/FeaturedProject";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
 import { siteConfig } from "@/config/site";
-import { experienceSnapshot, experienceVisuals, hero, resumeTransition, whatIBring } from "@/content/home";
+import { experienceSnapshot, experienceVisuals, hero, howIWork, organisations, resumeTransition, whatIBring } from "@/content/home";
 import { career } from "@/content/profile";
 import { buildMetadata } from "@/lib/metadata";
 import { personSchema } from "@/lib/schema";
@@ -38,6 +39,21 @@ export default function Home() {
           { ...hero.secondary, variant: "secondary" },
         ]}
       />
+
+      {/* Organisations: a quiet strip of employers, as text marks only. */}
+      <section aria-label={organisations.label} className="border-b border-border px-[clamp(20px,5vw,64px)] py-6">
+        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center gap-x-[clamp(24px,4vw,56px)] gap-y-4">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-text-muted">{organisations.label}</p>
+          <ul className="flex flex-wrap items-center gap-x-[clamp(24px,4vw,56px)] gap-y-3">
+            {organisations.items.map((org) => (
+              <li key={org.short} className="flex items-baseline gap-2.5">
+                <span className="font-serif text-[22px] font-semibold tracking-[-0.01em] text-navy">{org.short}</span>
+                <span className="text-[12.5px] text-text-muted max-sm:hidden">{org.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* What I Bring — four established areas in an asymmetric grid, then the developing direction. */}
       <Section background="dark" backdrop="static">
@@ -85,11 +101,19 @@ export default function Home() {
         <div className="reveal mt-[clamp(32px,4vw,56px)] grid grid-cols-[auto_minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-x-[clamp(20px,4vw,56px)] gap-y-3 bg-ivory p-[clamp(24px,3.4vw,44px)] text-navy max-lg:grid-cols-[auto_minmax(0,1fr)]">
           <p aria-hidden="true" className="row-span-2 self-start font-serif text-[15px] text-gold-text lg:row-span-1 lg:self-center">05</p>
           <div>
-            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold-text">{whatIBring.direction.label}</p>
-            <h3 className="mt-2 text-[clamp(24px,2.4vw,32px)] leading-[1.1] text-navy">{whatIBring.direction.title}</h3>
+            <h3 className="text-[clamp(24px,2.4vw,32px)] leading-[1.1] text-navy">{whatIBring.direction.title}</h3>
           </div>
           <p className="text-[16px] leading-relaxed text-text-muted max-lg:col-start-2">{whatIBring.direction.desc}</p>
         </div>
+      </Section>
+
+      {/* How I work — a selectable five-stage loop. */}
+      <Section>
+        <div className="mb-[clamp(32px,4.5vw,56px)] flex flex-wrap items-end justify-between gap-x-10 gap-y-3">
+          <h2 className="text-[clamp(32px,4.2vw,54px)] leading-[1.02] tracking-[-0.02em] text-navy">{howIWork.h2}</h2>
+          <p className="max-w-[460px] text-[16.5px] text-text-muted">{howIWork.intro}</p>
+        </div>
+        <HowIWork stages={howIWork.stages} />
       </Section>
 
       {/* Experience — four image-led cards, each a link to the full Experience page. */}

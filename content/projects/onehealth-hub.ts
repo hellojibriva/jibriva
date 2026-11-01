@@ -65,6 +65,20 @@ export const oneHealthStory = {
       },
     ],
   },
+  whyItMatters:
+    "Many zoonotic threats are first visible in animals or the environment. When human, animal and environmental health information sits in separate systems, a signal seen in one sector may not reach the people who could act on it in another.",
+  chapters: [
+    { id: "challenge", label: "The challenge" },
+    { id: "why", label: "Why it matters" },
+    { id: "approach", label: "My approach" },
+    { id: "developed", label: "What I developed" },
+    { id: "features", label: "Key features" },
+    { id: "limitations", label: "Limitations and lessons" },
+  ],
+  lessons: [
+    "Keeping community-reported signals apart from confirmed diagnoses has to be designed in from the start, in the record model itself.",
+    "Building a working version made the hard problems concrete: verifying reports, connecting to national systems, and reaching people without smartphones.",
+  ],
   journey: [
     { name: "Community reporting", text: "A community observation enters through a field reporting pathway." },
     { name: "Integrated surveillance", text: "Reports and events are organised across human, animal and environmental sectors." },

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
+import { posts } from "@/content/blog";
 import { publishedProjects } from "@/content/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     ...siteConfig.nav.map((item) => item.href),
     ...publishedProjects.map((p) => `/projects/${p.slug}`),
+    ...posts.map((p) => `/blog/${p.slug}`),
     ...siteConfig.legal.map((item) => item.href),
   ];
 
