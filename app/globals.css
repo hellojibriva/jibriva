@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+/*
+  Design tokens. Brand palette is cream, navy and gold only: cream is the page,
+  ivory the card surface, sand a deeper cream for alternating bands. Every
+  colour is a variable so the dark theme (below) can swap the whole set; the
+  utilities (bg-cream, text-navy …) never change name.
+
+    navy  — headings and ink-coloured text/lines; becomes warm ivory in dark.
+    deep  — the deep navy section surface; stays dark in both themes.
+    ink   — constant dark navy, for text on gold and image overlays.
+    paper — constant ivory, for light fills that must stay light.
+
+  Gold #C9A227 is for fills, rules, borders and text on navy (7.4:1). On cream
+  it only reaches ~2.4:1, so small gold text on light backgrounds uses the
+  bronze gold-text (5.8:1 on cream, 6.1:1 on ivory). The form error red is
+  functional, not a brand colour.
+*/
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --c-cream: #faf6ee;
+  --c-cream-2: #f8f2e6;
+  --c-ivory: #fffcf6;
+  --c-ivory-2: #fbf6ec;
+  --c-sand: #f3ecdd;
+  --c-sand-2: #efe6d3;
+  --c-navy: #0f172a;
+  --c-deep: #0f172a;
+  --c-text: #2b3242;
+  --c-text-muted: #515561;
+  --c-border: #e6dcc8;
+  --c-input-border: #bfb39a;
+  --c-gold: #c9a227;
+  --c-gold-text: #7a5c10;
+  --c-white: #ffffff;
+  --grain-opacity: 0.35;
+}
+
+/*
+  Dark theme: deep ink-navy page (never black), slightly lifted navy surfaces,
+  warm ivory text (never pure white) and a brighter gold that keeps AA on the
+  dark surfaces. Screen only, so printing (the resume PDF) is always light.
+    text #E6DFD0 on page #0E1526 ≈ 13:1 · muted #B0A99A ≈ 7.6:1
+    gold-text #D8B65A ≈ 9:1 · gold #D4AF37 ≈ 8.3:1
+*/
+@media screen {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --c-cream: #0e1526;
+    --c-cream-2: #0c1322;
+    --c-ivory: #161f33;
+    --c-ivory-2: #141c2f;
+    --c-sand: #121a2c;
+    --c-sand-2: #101828;
+    --c-navy: #f1ead9;
+    --c-deep: #090e1b;
+    --c-text: #e6dfd0;
+    --c-text-muted: #b0a99a;
+    --c-border: #2a3550;
+    --c-input-border: #46536f;
+    --c-gold: #d4af37;
+    --c-gold-text: #d8b65a;
+    --c-white: #f4eee2;
+    --grain-opacity: 0.12;
+  }
+}
+
+@theme inline {
+  --color-navy: var(--c-navy);
+  --color-deep: var(--c-deep);
+  --color-ink: #0f172a;
+  --color-paper: #fffcf6;
+  --color-cream: var(--c-cream);
+  --color-ivory: var(--c-ivory);
+  --color-sand: var(--c-sand);
+  --color-gold: var(--c-gold);
+  --color-gold-text: var(--c-gold-text);
+  --color-text: var(--c-text);
+  --color-text-muted: var(--c-text-muted);
+  --color-border: var(--c-border);
+  --color-input-border: var(--c-input-border);
+  --color-white: var(--c-white);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+}
+
+body {
+  color: var(--c-text);
+  background-color: var(--c-cream);
+  /* A quiet tonal wash from cream to a slightly deeper cream; no glows. */
+  background-image: linear-gradient(180deg, var(--c-cream) 0%, var(--c-cream-2) 100%);
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+}
+
+/* Paper grain over the whole page — a very light, static texture. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.48  0 0 0 0 0.36  0 0 0 0 0.06  0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+[data-theme="dark"] body::before {
+  mix-blend-mode: screen;
+}
+
+/* Theme switch: a brief colour cross-fade, applied only while switching. */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-switching,
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition:
+      background-color 250ms ease,
+      color 250ms ease,
+      border-color 250ms ease,
+      fill 250ms ease !important;
+  }
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+  Editorial headings: every h1–h3 is set in the serif at a refined weight.
+  Unlayered on purpose so it wins over per-component weight utilities. Small
+  uppercase label headings opt out with the `label-heading` class.
+*/
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  text-wrap: pretty;
+}
+
+h1 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.label-heading,
+h2.label-heading,
+h3.label-heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* The site's only animation: the homepage hero fades up on load. */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.7s ease both;
+}
+
+/* Global hover rule used across nav links site-wide. */
+a {
+  transition: color 150ms ease;
+}
+
+/*
+  Visible focus ring: dark gold on light backgrounds, bright gold inside navy
+  sections and the footer, so it passes 3:1 on both.
+*/
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-gold-text);
+  outline-offset: 2px;
+}
+
+.bg-deep a:focus-visible,
+.bg-deep button:focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/*
+  Subtle section reveal as content scrolls into view. Pure CSS, applied only
+  in browsers that support scroll-driven animations, and never for visitors
+  who prefer reduced motion — elsewhere content simply appears.
+*/
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A connecting line that draws itself as it scrolls into view (.draw-x / .draw-y). */
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes story-slide {
+  from {
+    opacity: 0.4;
+    transform: translate(48px, 36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .draw-x,
+    .draw-y {
+      animation: draw-x linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 50%;
+      transform-origin: left top;
+    }
+    .draw-y {
+      animation-name: draw-y;
+    }
+    /* The "now" screenshot slides over the "before" one as the opening scrolls. */
+    .story-slide {
+      animation: story-slide linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+/* ─── Background system ──────────────────────────────────────────────── */
+
+/* Ivory band: lighter surface with gold hairline edges. */
+.surface-ivory {
+  background: linear-gradient(180deg, var(--c-ivory) 0%, var(--c-ivory-2) 100%);
+  box-shadow: inset 0 1px 0 rgb(201 162 39 / 0.35), inset 0 -1px 0 rgb(201 162 39 / 0.2);
+}
+
+/* Deeper cream band. */
+.surface-sand {
+  background: linear-gradient(180deg, var(--c-sand) 0%, var(--c-sand-2) 100%);
+}
+
+/* Deep navy: flat, with a faint gold grid like chart paper. */
+.surface-navy {
+  background-color: var(--c-deep);
+  background-image:
+    linear-gradient(rgb(201 162 39 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(201 162 39 / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px, 56px 56px;
+}
+
+/* Surveillance backdrop colours (components/ui/HealthBackdrop). */
+.hb-light {
+  --hb-line: rgb(122 92 16 / 0.16);
+  --hb-bar: rgb(122 92 16 / 0.06);
+  --hb-trend: rgb(201 162 39 / 0.55);
+  --hb-fill-1: rgb(201 162 39 / 0.08);
+  --hb-fill-2: rgb(201 162 39 / 0.14);
+  --hb-fill-3: rgb(201 162 39 / 0.24);
+}
+.hb-dark,
+[data-theme="dark"] .hb-light {
+  --hb-line: rgb(212 175 55 / 0.2);
+  --hb-bar: rgb(212 175 55 / 0.07);
+  --hb-trend: rgb(212 175 55 / 0.6);
+  --hb-fill-1: rgb(212 175 55 / 0.08);
+  --hb-fill-2: rgb(212 175 55 / 0.15);
+  --hb-fill-3: rgb(212 175 55 / 0.26);
+}
+
+/* Section marker: a short gold line with a small diamond, used between major sections. */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-marker::before,
+.section-marker::after {
+  content: "";
+  height: 1px;
+  background: var(--color-gold);
+}
+.section-marker::before {
+  width: 32px;
+}
+.section-marker::after {
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  background: transparent;
+  border: 1px solid var(--color-gold);
+}
+
+/* Backdrop motion: the epidemic-curve trend line draws in once. */
+@keyframes hb-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hb-trend-draw {
+  stroke-dasharray: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hb-trend-draw {
+    stroke-dashoffset: 1;
+    animation: hb-draw 2.4s ease-out 0.3s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Print (used to produce the resume PDF): A4 with even margins. */
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  body::before {
+    display: none;
+  }
+}
