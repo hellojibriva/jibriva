@@ -25,6 +25,8 @@ export interface CareerRole {
   tools?: string[];
   /** One achievement stated in the CV for this role, if any. */
   highlight?: string;
+  /** Headline figures for the role, with a note on what they describe. */
+  metrics?: { items: { value: string; label: string }[]; note: string };
 }
 
 export interface SkillCategory {

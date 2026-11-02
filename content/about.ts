@@ -9,7 +9,7 @@ export const aboutHero = {
 
 /* Sources: Abi's CV of 31 Oct 2026 and her chat instructions. Written in her own voice — keep it plain. */
 export const profile = [
-  "Most of my work has been about making programme data reliable and useful: checking it, reporting it, and following up on what it shows. I currently work as a Project Officer on the Adopt-A-Health-Facility Programme at the Private Sector Health Alliance of Nigeria (PSHAN), supporting monitoring and performance analysis across a network of primary healthcare facilities.",
+  "Most of my work has been about making programme data reliable and useful: checking it, reporting it, and following up on what it shows. I currently work as a Project Officer on the Adopt-A-Health-Facility Programme at the Private Sector Health Alliance of Nigeria (PSHAN), supporting monitoring and performance analysis across 60+ primary healthcare facilities in 33 states and the FCT.",
   "Before PSHAN, I worked at the Solina Centre for International Development and Research (SCIDaR) on PEPFAR/USAID-funded HIV programmes — first as a Data Entry Clerk on ACHIEVE, then as Programme Officer and PMTCT Workstream Lead on ASPIRE. I started out with the World Health Organization in Jigawa State, monitoring polio vaccination campaigns during my National Youth Service.",
   "My degree is in animal science, and it's a large part of why epidemiology, zoonotic disease surveillance and One Health interest me — many of the diseases that matter for public health begin in animals. I'm developing that interest through epidemiological research and independent projects, alongside my programme work.",
 ];
@@ -82,7 +82,7 @@ export const drivers = {
     },
     {
       title: "One Health and early detection",
-      text: "My animal science background keeps me looking at the animal side of outbreaks. Many emerging infections start there, long before they reach a clinic.",
+      text: "My animal science background keeps me looking at the animal side of outbreaks. Animal health events can provide important early signals of threats to human and animal health. I'm interested in how these signals can be recognised and connected through stronger surveillance systems.",
     },
     {
       title: "Evidence that changes practice",
@@ -103,7 +103,7 @@ export const askMe = {
       q: "What kind of public-health programmes have I worked on?",
       a: [
         "HIV prevention, treatment and PMTCT on PEPFAR/USAID-funded programmes at SCIDaR — first on ACHIEVE, then on ASPIRE, where I led the PMTCT workstream.",
-        "Primary healthcare through PSHAN's Adopt-A-Health-Facility Programme, where I support monitoring and performance analysis across revitalised facilities.",
+        "Primary healthcare through PSHAN's Adopt-A-Health-Facility Programme, where I support monitoring and performance analysis across 60+ primary healthcare facilities in 33 states and the FCT.",
         "Earlier, polio vaccination campaigns in Jigawa State with the World Health Organization, during my National Youth Service.",
       ],
     },

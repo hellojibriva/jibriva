@@ -8,7 +8,8 @@ import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
 import { siteConfig } from "@/config/site";
-import { experienceSnapshot, experienceVisuals, hero, howIWork, organisations, resumeTransition, whatIBring } from "@/content/home";
+import { getPost } from "@/content/blog";
+import { experienceSnapshot, experienceVisuals, fromFieldNotes, hero, howIWork, organisations, resumeTransition, selectedAchievements, whatIBring } from "@/content/home";
 import { career } from "@/content/profile";
 import { buildMetadata } from "@/lib/metadata";
 import { personSchema } from "@/lib/schema";
@@ -21,6 +22,8 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Home() {
+  const note = getPost(fromFieldNotes.slug);
+
   return (
     <>
       <script
@@ -116,6 +119,40 @@ export default function Home() {
         <HowIWork stages={howIWork.stages} />
       </Section>
 
+      {/* Selected Achievements — a ruled summary, figures first. */}
+      <Section background="sand">
+        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3">
+          <h2 className="text-[clamp(32px,4.2vw,54px)] leading-[1.02] tracking-[-0.02em] text-navy">{selectedAchievements.h2}</h2>
+          <p className="max-w-[520px] text-[16.5px] leading-relaxed text-text-muted">{selectedAchievements.intro}</p>
+        </div>
+        <ol className="mt-[clamp(28px,4vw,48px)] grid grid-cols-2 border-t border-navy/15 max-md:grid-cols-1">
+          {selectedAchievements.items.map((a, i) => (
+            <li
+              key={a.title}
+              className={cn(
+                "reveal grid grid-cols-[minmax(96px,auto)_minmax(0,1fr)] gap-x-[clamp(16px,2.4vw,32px)] border-b border-navy/15 py-[clamp(22px,3vw,34px)]",
+                i % 2 === 0 ? "md:pr-[clamp(20px,3vw,48px)]" : "md:border-l md:pl-[clamp(20px,3vw,48px)]",
+              )}
+            >
+              <p className="pt-1">
+                <span className="block font-serif text-[clamp(30px,3.2vw,42px)] font-semibold leading-none text-gold-text">{a.figure}</span>
+                <span className="mt-1.5 block max-w-[110px] text-[11.5px] font-semibold uppercase leading-snug tracking-[0.06em] text-text-muted">
+                  {a.figureLabel}
+                </span>
+              </p>
+              <div>
+                <p className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-gold-text">{a.source}</p>
+                <h3 className="mt-1.5 text-[clamp(19px,1.8vw,22px)] leading-snug text-navy">{a.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-text">{a.text}</p>
+                <Link href={a.href} className="mt-3 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-navy hover:text-gold-text">
+                  {a.linkLabel} <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
       {/* Experience — four image-led cards, each a link to the full Experience page. */}
       <Section background="band">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
@@ -159,6 +196,39 @@ export default function Home() {
       </Section>
 
       <FeaturedProject />
+
+      {/* From Field Notes — one featured article, as an editorial strip. */}
+      {note && (
+        <Section background="band">
+          <article className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-[clamp(20px,5vw,72px)] gap-y-4 max-md:grid-cols-1">
+            <p aria-hidden="true" className="font-serif text-[clamp(64px,8vw,112px)] leading-[0.8] text-gold/60 max-md:hidden">
+              &ldquo;
+            </p>
+            <div className="max-w-[860px]">
+              <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-gold-text">
+                {fromFieldNotes.label}
+                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-gold" />
+                <span className="normal-case tracking-normal text-text-muted">
+                  {note.category} · {note.readingMinutes} min read
+                </span>
+              </p>
+              <h2 className="mt-4 text-[clamp(26px,3.2vw,40px)] leading-[1.12] tracking-[-0.015em] text-navy">
+                <Link href={`/blog/${note.slug}`} className="transition-colors hover:text-gold-text">
+                  {note.title}
+                </Link>
+              </h2>
+              <p className="mt-4 max-w-[720px] font-serif text-[clamp(17px,1.7vw,20px)] italic leading-relaxed text-text-muted">{fromFieldNotes.intro}</p>
+              <Link
+                href={`/blog/${note.slug}`}
+                className="mt-6 inline-flex items-center gap-2 border-b border-gold pb-1 text-[15px] font-semibold text-navy hover:text-gold-text"
+              >
+                Read the article <span aria-hidden="true">→</span>
+                <span className="sr-only">: {note.title}</span>
+              </Link>
+            </div>
+          </article>
+        </Section>
+      )}
 
       <ClosingCta />
     </>

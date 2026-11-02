@@ -112,7 +112,7 @@ export const journey = {
       start: 2026.08,
       end: 2026.83,
       current: true,
-      description: "Programme monitoring, MEAL, facility reporting, data quality and primary healthcare performance across a network of revitalised facilities.",
+      description: "Programme monitoring, MEAL, facility reporting, data quality and primary healthcare performance across 60+ primary healthcare facilities in 33 states and the FCT.",
       learning: "Developed an HMIS and data-quality training plan, and reporting checklists, to tackle recurring data-quality gaps.",
       link: { href: "/experience", label: "See this role on the Experience page" },
     },

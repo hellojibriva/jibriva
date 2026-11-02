@@ -144,3 +144,59 @@ export const closingCta = {
   paragraph: "I'd like to hear about it — programme implementation, MEAL, research, surveillance or One Health.",
   primaryLabel: "Get in touch",
 };
+
+/*
+ * Selected Achievements: Abi's wording (2 Nov 2026). Figures are only those
+ * she supplied or that the brucellosis analysis reports; `figure` is the part
+ * given visual emphasis, taken from the text itself.
+ */
+export const selectedAchievements = {
+  h2: "Selected Achievements",
+  intro:
+    "Selected contributions across public health programme implementation, performance monitoring, health data quality and independent research.",
+  items: [
+    {
+      figure: "60+",
+      figureLabel: "PHCs · 33 states + FCT",
+      title: "Programme Monitoring Across a Multi-State PHC Network",
+      text: "Supported monitoring and performance analysis for the Adopt-A-Health-Facility Programme across 60+ primary healthcare facilities in 33 states and the FCT, spanning Nigeria's six geopolitical zones.",
+      source: "PSHAN · ADHFP",
+      href: "/experience",
+      linkLabel: "See the role",
+    },
+    {
+      figure: "Weekly",
+      figureLabel: "reporting deadlines",
+      title: "Improving Facility Reporting and Data Quality",
+      text: "Identified facility reporting and data-quality challenges through structured Google Forms feedback, analysed responses in Excel, and introduced weekly reporting deadlines and facility follow-up to strengthen reporting consistency.",
+      source: "SCIDaR · PEPFAR/USAID ASPIRE",
+      href: "/experience",
+      linkLabel: "See my experience",
+    },
+    {
+      figure: "PMTCT",
+      figureLabel: "workstream lead",
+      title: "PMTCT Workstream Leadership",
+      text: "Led the PMTCT workstream under the PEPFAR/USAID-supported ASPIRE programme at SCIDaR, supporting programme implementation, facility performance monitoring and data-quality improvement.",
+      source: "SCIDaR · PEPFAR/USAID ASPIRE",
+      href: "/experience",
+      linkLabel: "See the workstream results",
+    },
+    {
+      figure: "487",
+      figureLabel: "reported cases · 78 outbreaks",
+      title: "Independent Brucellosis Surveillance Analysis",
+      text: "Completed an independent analysis of Nigeria's reported brucellosis surveillance records from 2008–2025, examining 487 reported cases across 78 recorded outbreaks using WOAH-WAHIS data.",
+      source: "Independent research",
+      href: "/projects/nigeria-brucellosis-surveillance-analysis",
+      linkLabel: "Explore the analysis",
+    },
+  ],
+};
+
+export const fromFieldNotes = {
+  label: "From Field Notes",
+  slug: "from-animal-science-to-public-health",
+  intro:
+    "How my background in Animal Science developed into a career in public health programme implementation, monitoring and evaluation, health data and an emerging interest in One Health and disease surveillance.",
+};

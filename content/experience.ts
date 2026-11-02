@@ -2,7 +2,8 @@
  * Experience page copy. Role details live in content/profile.ts (from Abi's CV
  * of 31 Oct 2026, condensed). Achievements below are only things that are
  * stated in that CV or are completed, verifiable projects on this site — no
- * new metrics. PSHAN wording stays general: no facility or indicator counts.
+ * other metrics. Figures are those Abi supplied (2 Nov 2026); ASPIRE results
+ * are the PMTCT workstream's, not hers alone.
  */
 
 export const experienceHero = {
@@ -28,7 +29,7 @@ export const achievements = [
   },
   {
     title: "Led the PMTCT workstream",
-    text: "Coordinated PMTCT activities, tracked implementation against national guidelines and targets, and monitored testing, retention and viral-load indicators.",
+    text: "Coordinated PMTCT activities, tracked implementation against national guidelines and targets, and monitored testing, retention and viral-load indicators. Workstream results: 95% enrolment uptake, 95% refill uptake and 95% viral load uptake, with less than 1% loss to follow-up.",
     source: "SCIDaR · PEPFAR/USAID ASPIRE",
   },
   {

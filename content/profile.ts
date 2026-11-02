@@ -1,9 +1,10 @@
 import type { CareerRole } from "@/types/content";
 
 /**
- * Career history, newest first. Source: Abi's CV of 31 Oct 2026, condensed.
- * PSHAN wording is deliberately general: no facility or indicator counts, and
- * no named stakeholder engagements, appear on the public site.
+ * Career history, newest first. Source: Abi's CV of 31 Oct 2026, condensed,
+ * plus figures Abi supplied for the site (2 Nov 2026): the ADHFP scale (60+
+ * PHCs in 33 states and the FCT; 80+ HMIS indicators) and the ASPIRE PMTCT
+ * workstream results. Results are the workstream's, not Abi's alone.
  */
 export const career: CareerRole[] = [
   {
@@ -13,14 +14,23 @@ export const career: CareerRole[] = [
     organisationShort: "PSHAN",
     period: "February 2026 – Present",
     years: "2026 – Present",
-    context: "A programme supporting a network of revitalised primary healthcare facilities, monitored through routine facility HMIS data.",
+    context: "A programme supporting 60+ primary healthcare facilities in 33 states and the FCT, across Nigeria's six geopolitical zones, monitored through routine facility HMIS data.",
     tools: ["Routine HMIS data", "Microsoft Excel", "Power BI dashboards", "Programme reports and presentations"],
     highlight: "Developed an HMIS and data-quality training plan, and family planning and mortality reporting checklists, to tackle recurring data-quality gaps.",
+    metrics: {
+      items: [
+        { value: "60+", label: "primary healthcare facilities" },
+        { value: "33 + FCT", label: "states covered" },
+        { value: "80+", label: "HMIS indicators monitored" },
+      ],
+      note: "Programme scale across Nigeria's six geopolitical zones. I support monitoring and performance analysis within the programme.",
+    },
     responsibilities: [
-      "I support programme monitoring, implementation follow-up and performance analysis across a network of revitalised primary healthcare facilities.",
+      "I support programme monitoring, implementation follow-up and performance analysis across 60+ primary healthcare facilities in 33 states and the FCT, spanning Nigeria's six geopolitical zones.",
+      "I work with 80+ HMIS indicators across programme monitoring and reporting.",
       "I consolidate, clean, validate and analyse routine facility HMIS data, and follow up with facilities on missing, inconsistent or unusual values.",
       "I turn monthly indicator analysis into dashboards, programme reports and technical presentations for programme and stakeholder reviews.",
-      "I coordinate with facility Officers-in-Charge and local government M&E structures, and supervise programme liaison officers.",
+      "I coordinate with facility Officers-in-Charge, local government M&E structures and programme liaison officers to strengthen reporting, data quality and programme follow-up.",
       "I developed an HMIS and data-quality training plan, and checklists for family planning and mortality/cause-of-death reporting, in response to recurring data-quality gaps.",
     ],
   },
@@ -32,13 +42,23 @@ export const career: CareerRole[] = [
     period: "January 2023 – February 2026",
     years: "2023 – 2026",
     context: "PEPFAR-funded HIV prevention, testing, treatment, care and PMTCT services across supported health facilities.",
-    tools: ["NHLMIS", "CRRF", "Google Forms", "Microsoft Excel"],
+    tools: ["DHIS2", "NHLMIS", "CRRF", "Google Forms", "Microsoft Excel"],
     highlight: "New reporting routines contributed to previously low-performing facilities moving from the red category on the NHLMIS dashboard into the top 10.",
+    metrics: {
+      items: [
+        { value: "95%", label: "enrolment uptake" },
+        { value: "95%", label: "refill uptake" },
+        { value: "95%", label: "viral load uptake" },
+        { value: "<1%", label: "loss to follow-up (LTFU)" },
+      ],
+      note: "Programme performance results under the ASPIRE PMTCT workstream, achieved with facility teams and programme staff.",
+    },
     responsibilities: [
       "I led the PMTCT workstream, coordinating activities, tracking implementation, and supporting alignment with national HIV guidelines, targets and standard operating procedures.",
       "I monitored HIV indicators for testing, PMTCT, retention, viral-load coverage and treatment outcomes, and contributed to weekly, monthly and quarterly programme reports.",
-      "I conducted and supported data-quality assessments, reviewing facility records and reports to identify discrepancies.",
-      "I identified persistent facility reporting barriers through a Google Forms assessment, analysed the feedback in Excel, and introduced weekly reporting, defined submission deadlines, routine register reviews and structured follow-up. These improved routines contributed to previously low-performing facilities moving from the red category on the NHLMIS dashboard into the top 10 performing facilities.",
+      "I conducted and supported data-quality assessments, reviewing facility records and reports to identify discrepancies, and supported accurate, timely reporting through DHIS2 and other programme information systems.",
+      "I used Excel-based automation and reporting improvements to streamline programme data processes.",
+      "I identified facility reporting and data-quality challenges through structured Google Forms feedback, analysed responses in Excel, and introduced weekly reporting deadlines and facility follow-up to strengthen reporting consistency. These improved routines contributed to previously low-performing facilities moving from the red category on the NHLMIS dashboard into the top 10 performing facilities.",
       "I coordinated programme staff, facility focal persons and community mobilisers, and supported commodity monitoring and reporting through CRRF and NHLMIS.",
     ],
   },

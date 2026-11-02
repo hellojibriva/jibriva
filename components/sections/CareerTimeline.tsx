@@ -87,6 +87,24 @@ export function CareerTimeline({ roles, notes }: { roles: CareerRole[]; notes: (
               {role.programme} · {role.organisation}
             </p>
             {note && <p className="mt-5 border-l-2 border-gold pl-4 font-serif text-[18px] italic leading-snug text-navy/85">{note}</p>}
+            {role.metrics && (
+              <figure className="mt-5">
+                <dl className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-px overflow-hidden rounded-[8px] border border-border bg-border">
+                  {role.metrics.items.map((m) => (
+                    <div key={m.label} className="bg-cream/70 px-4 py-3">
+                      <dt className="sr-only">{m.label}</dt>
+                      <dd>
+                        <span className="block font-serif text-[clamp(24px,2.4vw,30px)] font-semibold leading-none text-navy">{m.value}</span>
+                        <span className="mt-1.5 block text-[12.5px] leading-snug text-text-muted" aria-hidden="true">
+                          {m.label}
+                        </span>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <figcaption className="mt-2 text-[12.5px] leading-snug text-text-muted">{role.metrics.note}</figcaption>
+              </figure>
+            )}
             {role.highlight && (
               <div className="mt-5 rounded-[8px] border border-gold/50 bg-gold/10 p-4">
                 <p className="text-[11.5px] font-bold uppercase tracking-[0.1em] text-gold-text">Highlight</p>
